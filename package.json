@@ -14,7 +14,10 @@
     "serve-favicon": "~2.3.0",
     "swig": "^1.4.2",
     "mongoose": "^4.1.7",
-    "mongoose-q": "^0.1.0"
+    "mongoose-q": "^0.1.0",
+    "passport": "^0.3.0",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^3.0.0"
   },
   "devDependencies": {
     "bcrypt-nodejs": "0.0.3",
@@ -27,9 +30,6 @@
     "gulp-livereload": "^3.8.0",
     "gulp-nodemon": "^2.0.4",
     "gulp-notify": "^2.2.0",
-    "jshint-stylish": "^2.0.1",
-    "passport": "^0.3.0",
-    "passport-local": "^1.0.0",
-    "passport-local-mongoose": "^3.0.0"
+    "jshint-stylish": "^2.0.1"
   }
 }
