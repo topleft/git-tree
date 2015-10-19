@@ -24,7 +24,6 @@ input.form-control {
 .btn  {
 	background-color: rgba(100,100,100, .5);
 	color: #777;
-	min-width: 8rem;
 }
 
 
@@ -60,6 +59,7 @@ input.form-control {
 
 .table>tbody>tr>th {
 	border: none;
+	min-width: 10rem;
 }
 
 
@@ -67,5 +67,11 @@ tr.table {
 }
 
 .output .btn {
-	width: 100%;
+	width: 8rem;
 }
+
+.output button.confirm {
+	width: 45%;
+}
+
+

@@ -1,4 +1,4 @@
-
+ 
 <div class='table output'>
 <div class='col-md-10 col-md-offset-1'>
 		<table class="table">
@@ -23,13 +23,21 @@
 				
 				<td>{{ item._id  }}</td>
 				
-				<td ng-show='update !== item._id'><button  class='btn btn-warning' ng-click='toggleUpdate(item._id)'>update</button></td>
+				<td ng-show='update !== item._id'><button  class='btn btn-warning glyphicon glyphicon-pencil' ng-click='toggleUpdate(item._id)'></button></td>
 				
-				<td ng-show='update === item._id'><button type='submit' class='btn btn-info' ng-click='updateItem(item._id, item.name, item.type)'>save</button></td>
+				<td ng-show='update === item._id'>
+					<button type='submit' class='confirm btn btn-info btn-sml glyphicon glyphicon-ok' ng-click='updateItem(item._id, item.name, item.type)'></button>
+					<button type='button' class='confirm btn btn-warning btn-sml glyphicon glyphicon-ban-circle' ng-click='toggleUpdate(false)'></button>
+				</td>
 
-				<td ng-show="action.id !== item._id" ><button class='btn btn-danger' ng-click='doubleCheckDelete(item._id)'>delete</button></td>
+				<td ng-show="action.id !== item._id" >
+					<button class='btn btn-danger glyphicon glyphicon-remove' ng-click='doubleCheckDelete(item._id)'></button>
+				</td>
 
-				<td ng-show="action.id === item._id" ><button class='btn btn-danger' ng-click='deleteItem(item._id)'>confirm</button></td>
+				<td ng-show="action.id === item._id" >
+					<button class='confirm btn btn-danger btn-sml glyphicon glyphicon-remove' ng-click='deleteItem(item._id)'></button>
+					<button type='button' class='confirm btn btn-warning btn-sml glyphicon glyphicon-ban-circle' ng-click='doubleCheckDelete(false)'></button>
+				</td>
 
 			</tr>
 		</table>
