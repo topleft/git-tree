@@ -1,0 +1,19 @@
+
+
+<div class='container	'>
+	<div class= "col-md-10 col-md-offset-1">
+		<form ng-submit="addItem()">
+		  <div class="form-group col-md-8 col-md-offset-2">
+		    <label for="item">Item</label>
+		    <input type="text" class="form-control" ng-model='collections.newItem.name' id="name" placeholder="Item..." required>
+		  </div>
+		  <div class="form-group col-md-8 col-md-offset-2">
+		    <label for="type">Type</label>
+		    <input type="text" class="form-control" ng-model='collections.newItem.type' id="type" placeholder="Type..." required>
+		  </div>
+		  <div class="form-group col-md-8 col-md-offset-2">
+		  	<button type="submit" class="btn btn-primary">Submit</button>
+		  </div>
+		</form>
+	</div>
+</div>

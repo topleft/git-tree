@@ -1,0 +1,37 @@
+
+<div class='table output'>
+<div class='col-md-10 col-md-offset-1'>
+		<table class="table">
+			<tr>
+				<th>Item</th>
+				<th>Type</th>
+				<th>Id</th>
+				<th>Update</th>
+				<th>Delete</th>
+			</tr>
+			<tr ng-repeat="item in collections.items">
+				<td ng-show='update !== item._id'>{{ item.name }}</td>
+				<td ng-show='update !== item._id'>{{ item.type }}</td>
+				
+				<td ng-show='update === item._id'>
+					<input type="text" class="form-control" ng-model='item.name' id="name" placeholder="{{item.name}}">
+				</td>
+				
+				<td ng-show='update === item._id'>
+					<input type="text" class="form-control" ng-model='item.type' id="type" placeholder="{{item.type}}">
+				</td>
+				
+				<td>{{ item._id  }}</td>
+				
+				<td ng-show='update !== item._id'><button  class='btn btn-warning' ng-click='toggleUpdate(item._id)'>update</button></td>
+				
+				<td ng-show='update === item._id'><button type='submit' class='btn btn-info' ng-click='updateItem(item._id, item.name, item.type)'>save</button></td>
+
+				<td ng-show="action.id !== item._id" ><button class='btn btn-danger' ng-click='doubleCheckDelete(item._id)'>delete</button></td>
+
+				<td ng-show="action.id === item._id" ><button class='btn btn-danger' ng-click='deleteItem(item._id)'>confirm</button></td>
+
+			</tr>
+		</table>
+	</div>
+</div>
