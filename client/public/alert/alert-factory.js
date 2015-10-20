@@ -10,7 +10,6 @@ angular.module('factories').factory('alertFactory', [ '$timeout', "$animate", fu
               return closeAlert(this);
           }
       	};
-      	console.log(alert)
       	$timeout(this.closeAlert, 3000, true, alert);
       	return alerts.push(alert);
        },

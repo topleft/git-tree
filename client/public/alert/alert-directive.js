@@ -6,7 +6,6 @@
 				alerts:   '='
 			},
 			controller: function($scope){
-				console.log('alerts');
 				$scope.alerts = alertFactory.get();
 				}
 			};

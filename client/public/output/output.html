@@ -5,7 +5,6 @@
 			<tr>
 				<th>Item</th>
 				<th>Type</th>
-				<th>Id</th>
 				<th>Update</th>
 				<th>Delete</th>
 			</tr>
@@ -20,9 +19,7 @@
 				<td ng-show='update === item._id'>
 					<input type="text" class="form-control" ng-model='item.type' id="type" placeholder="{{item.type}}">
 				</td>
-				
-				<td>{{ item._id  }}</td>
-				
+								
 				<td ng-show='update !== item._id'><button  class='btn btn-warning glyphicon glyphicon-pencil' ng-click='toggleUpdate(item._id)'></button></td>
 				
 				<td ng-show='update === item._id'>

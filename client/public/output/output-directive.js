@@ -19,6 +19,7 @@ angular.module('directives')
 					$scope.action.delete=false;
 
 					$scope.doubleCheckDelete = function(id){
+						$scope.update = false;
 						$scope.action.id = id;
 					}
 
@@ -33,6 +34,7 @@ angular.module('directives')
 
 
 					$scope.toggleUpdate = function(id) {
+						$scope.action.id = false;
 						$scope.update = id;
 
 					};
