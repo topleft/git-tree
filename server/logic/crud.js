@@ -1,5 +1,5 @@
 var Item = require("../database.js").Item;
-var mongoose = require('mongoose-q')(require('mongoose'), {spread:true});
+var mongoose = require('mongoose-q')(require('mongoose'));
 
 
 console.log("in crud.js");
