@@ -15,4 +15,3 @@ router.get('/https://api.github.com/users/topleft/repos', function(req, res, nex
 module.exports = router;
 
 
-// http --json --headers GET https://api.github.com/users/topleft/repos  "Authorization: token 68c9e20980da95e564795fecb186ef729678beef"
