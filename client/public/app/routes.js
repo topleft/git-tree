@@ -15,6 +15,9 @@ angular.module('routes').config(['$routeProvider', function($routeProvider){
 		templateUrl: '../auth/register.html',
 		controller: 'registerController',
 		access: {restricted: false}
+	}).when('/tree', {
+		templateUrl: '../tree/tree.html',
+		access: {restricted: false}
 	});
 
 }]);
