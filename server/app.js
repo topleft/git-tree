@@ -9,8 +9,6 @@ var bodyParser = require('body-parser');
 var swig = require('swig');
 var mongoose = require('mongoose');
 var http = require("http");
-var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
 var expressSession = require('express-session');
 // var hash = require('bcrypt-nodejs');
 var User = require('./database').User;
@@ -59,8 +57,6 @@ app.use(require('express-session')({
 }));
 app.use(express.static(path.join(__dirname, '../client/public')));
 
-app.use(passport.initialize());
-app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
@@ -70,12 +66,6 @@ app.get('/', function(req, res, next) {
   res.sendFile(path.join(__dirname, '../client/public/views/', 'layout.html'));
 });
 app.use('/', routes);
-
-// passport config
-passport.use(new LocalStrategy(User.authenticate()));
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
-
 
 
 // catch 404 and forward to error handler
