@@ -24,12 +24,12 @@ var app = express();
 var config = require('./_config');
 
 // *** database config *** //
-mongoose.connect(config.mongoURI[app.settings.env],
+mongoose.connect(config.MONGO_URI[app.settings.env],
   function(err, res){
     if (err){
       console.log("Failed to connect to DB: "+err);
     } else {
-      console.log("Success. Connected to: "+config.mongoURI[app.settings.env]);
+      console.log("Success. Connected to: "+config.MONGO_URI[app.settings.env]);
     }
   });
 
