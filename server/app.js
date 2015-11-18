@@ -9,7 +9,7 @@ var bodyParser = require('body-parser');
 var swig = require('swig');
 var mongoose = require('mongoose');
 var http = require("http");
-var expressSession = require('express-session');
+
 // var hash = require('bcrypt-nodejs');
 var User = require('./database').User;
 
@@ -50,11 +50,6 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(require('express-session')({
-    secret: 'keyboard cat',
-    resave: false,
-    saveUninitialized: false
-}));
 app.use(express.static(path.join(__dirname, '../client/public')));
 
 app.use(express.static(path.join(__dirname, 'public')));
