@@ -3,6 +3,8 @@ var router = express.Router();
 var request = require('request');
 var qs = require('querystring');
 var User = require('../database.js');
+var config = require('../_config');
+var mongoose = require('mongoose');
 
 var helper = require('../logic/auth');
 
