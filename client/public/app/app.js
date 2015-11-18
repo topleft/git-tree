@@ -6,6 +6,6 @@ angular.module("myApp", ['routes', 'directives', 'factories'])
 	      $route.reload();
 	    }
 	  });
-	}); 
+	});
 
 

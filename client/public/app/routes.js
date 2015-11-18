@@ -1,6 +1,6 @@
-angular.module('routes', ['ngRoute']);
+var app = angular.module('routes', ['ngRoute', 'satellizer']);
 
-angular.module('routes').config(['$routeProvider', function($routeProvider){
+app.config(['$routeProvider', function($routeProvider){
 	$routeProvider
 	.when('/',{
 		templateUrl: '../views/index.html',
@@ -11,13 +11,16 @@ angular.module('routes').config(['$routeProvider', function($routeProvider){
 		controller: 'loginController',
 		access: {restricted: false}
 	})
-	.when('/register', {
-		templateUrl: '../auth/register.html',
-		controller: 'registerController',
-		access: {restricted: false}
-	}).when('/tree', {
+	.when('/tree', {
 		templateUrl: '../tree/tree.html',
 		access: {restricted: false}
 	});
+}]);
 
+app.config(['$authProvider', function($authProvider){
+  $authProvider.github({
+    url: '/auth/github',
+    clientId: 'ffc8045c4eabdb9e6328',//will need to update per user
+    redirectUri: window.location.origin
+  });
 }]);
