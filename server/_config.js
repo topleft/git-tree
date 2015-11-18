@@ -1,8 +1,8 @@
 var config = {};
 
 config.mongoURI = {
-	test: 'mongodb://localhost/crud-test-mocha',
-	development: 'mongodb://localhost/crud-testing',
+	test: 'mongodb://localhost/tree-test',
+	development: 'mongodb://localhost/tree',
 	production: process.env.MONGOLAB_URI 
 };
 

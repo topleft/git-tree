@@ -10,8 +10,14 @@ describe('git API routes', function(){
 
   describe('git repos', function(){
 
-    xit('should return git repo as a json object', function(){
-      
+    xit('should return git repo as a json object', function(done){
+      chai.request(server)
+        .get('UPDATE ME')
+        .end(function(err, res){
+          res.should.have.status(200);
+          res.should.be.json;
+          res.body.should.be.a('object');
+          done();
     });
 
     xit('should return git repo with javascript as dominant language', function(){
