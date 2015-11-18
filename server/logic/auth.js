@@ -1,7 +1,7 @@
 var moment = require('moment');
 var jwt = require('jwt-simple');
 var config = require('../_config');
-var User = require('../database.js');
+var User = require('../database').User;
 
 
 // *** login required *** //

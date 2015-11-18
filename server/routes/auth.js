@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var request = require('request');
 var qs = require('querystring');
-var User = require('../database.js');
+var User = require('../database').User;
 var config = require('../_config');
 var mongoose = require('mongoose');
 
