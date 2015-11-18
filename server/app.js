@@ -57,13 +57,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 // *** main routes *** //
-// app.get('/', function(req, res, next) {
-//   res.sendFile(path.join(__dirname, '../client/public/views/', 'layout.html'));
-// });
+app.get('/', function(req, res, next) {
+  res.sendFile(path.join(__dirname, '../client/public/views/', 'layout.html'));
+});
 
 // *** main routes *** //
 app.use('/', mainRoutes);
-// app.use('/auth', authRoutes);
+app.use('/auth', authRoutes);
 // app.use('/git/tree', gitRoutes);
 
 // catch 404 and forward to error handler
