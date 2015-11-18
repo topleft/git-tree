@@ -17,6 +17,7 @@ var User = require('./database').User;
 
 // *** routes *** //
 var routes = require('./routes/index.js');
+var gitRoutes = require('./routes/git-routes.js');
 
 
 // *** express instance *** //
@@ -69,7 +70,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', function(req, res, next) {
   res.sendFile(path.join(__dirname, '../client/public/views/', 'layout.html'));
 });
+
 app.use('/', routes);
+app.use('/', gitRoutes);
 
 // passport config
 passport.use(new LocalStrategy(User.authenticate()));

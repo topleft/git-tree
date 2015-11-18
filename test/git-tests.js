@@ -10,9 +10,9 @@ describe('git API routes', function(){
 
   describe('git repos', function(){
 
-    xit('should return git repo as a json object', function(done){
+    it('should return git repo as a json object', function(done){
       chai.request(server)
-        .get('UPDATE ME')
+        .get('https://api.github.com/users/topleft/repos')
         .end(function(err, res){
           res.should.have.status(200);
           res.should.be.json;
@@ -46,3 +46,5 @@ describe('git API routes', function(){
 
   });
 });
+});
+
