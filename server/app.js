@@ -11,11 +11,12 @@ var mongoose = require('mongoose');
 var http = require("http");
 
 // var hash = require('bcrypt-nodejs');
-var User = require('./database').User;
+// var User = require('./database').User;
 
 // *** routes *** //
-var routes = require('./routes/index.js');
-
+var mainRoutes = require('./routes/index');
+var authRoutes = require('./routes/auth');
+var gitRoutes = require('./routes/git-routes');
 
 // *** express instance *** //
 var app = express();
@@ -55,13 +56,15 @@ app.use(express.static(path.join(__dirname, '../client/public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
 
+// *** main routes *** //
+// app.get('/', function(req, res, next) {
+//   res.sendFile(path.join(__dirname, '../client/public/views/', 'layout.html'));
+// });
 
 // *** main routes *** //
-app.get('/', function(req, res, next) {
-  res.sendFile(path.join(__dirname, '../client/public/views/', 'layout.html'));
-});
-app.use('/', routes);
-
+app.use('/', mainRoutes);
+// app.use('/auth', authRoutes);
+// app.use('/git/tree', gitRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

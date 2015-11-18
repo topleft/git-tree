@@ -12,7 +12,6 @@ var userSchema = new Schema({
     password: String
 });
 
-// userSchema.plugin(passportLocalMongoose);
 
 var Item = mongoose.model("items", itemSchema);
 var User = mongoose.model("users", userSchema);
