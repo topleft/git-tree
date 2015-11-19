@@ -2,6 +2,11 @@ var app = angular.module('myApp');
 
 app.controller('authController', ['$scope', '$auth', '$rootScope','$window', '$location','authFactory', function($scope, $auth, $rootScope, $window, $location, authFactory){
 
+	//referencce for factory refactor
+	// $scope.authenticate = function() {
+	// 	authFactory.authenticate();
+	//  };
+
 	$scope.authenticate = function(provider) {
 
     $auth.authenticate(provider)
