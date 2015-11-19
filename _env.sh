@@ -1,0 +1,2 @@
+ 
+export githubClientSecret=A7e66d8d5fd43c49a070912f95c278ce596a4adc2

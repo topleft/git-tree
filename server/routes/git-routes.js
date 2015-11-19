@@ -3,7 +3,7 @@ var router = express.Router();
 var db = require('../database.js');
 var user = require('../database.js').User;
 var request = require('request');
-var token = require('../../_keys.js').token;
+var token = "UPDATE";
 
 
 router.get('/github/repo', function(req, res, next) {
