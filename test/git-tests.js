@@ -23,7 +23,7 @@ describe('git API routes', function () {
           console.log(res.body);
           res.should.have.status(200);
           res.should.be.json;
-          res.body.should.have.property('commit.sha');
+          res.body.should.have.property('sha');
           res.body.should.be.a('object');
           done();
       });    
