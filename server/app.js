@@ -2,7 +2,7 @@
 // require("./database.js")
 var express = require('express');
 var path = require('path');
-var favicon = require('serve-favicon');
+// var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
@@ -10,12 +10,12 @@ var swig = require('swig');
 var mongoose = require('mongoose');
 var http = require("http");
 // var hash = require('bcrypt-nodejs');
-var User = require('./database').User;
+// var User = require('./database').User;
 
 // *** routes *** //
-var routes = require('./routes/index.js');
-var gitRoutes = require('./routes/git-routes.js');
-
+var mainRoutes = require('./routes/index');
+var authRoutes = require('./routes/auth');
+var gitRoutes = require('./routes/git-routes');
 
 // *** express instance *** //
 var app = express();
@@ -24,12 +24,12 @@ var app = express();
 var config = require('./_config');
 
 // *** database config *** //
-mongoose.connect(config.mongoURI[app.settings.env],
+mongoose.connect(config.MONGO_URI[app.settings.env],
   function(err, res){
     if (err){
       console.log("Failed to connect to DB: "+err);
     } else {
-      console.log("Success. Connected to: "+config.mongoURI[app.settings.env]);
+      console.log("Success. Connected to: "+config.MONGO_URI[app.settings.env]);
     }
   });
 
@@ -59,11 +59,10 @@ app.get('/', function(req, res, next) {
   res.sendFile(path.join(__dirname, '../client/public/views/', 'layout.html'));
 });
 
-app.use('/', routes);
-app.use('/', gitRoutes);
-
-
-
+// *** main routes *** //
+app.use('/', mainRoutes);
+app.use('/auth', authRoutes);
+app.use('/git/tree', gitRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -96,6 +95,5 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
-
 
 module.exports = app;

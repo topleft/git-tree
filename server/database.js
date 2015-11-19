@@ -1,5 +1,7 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
+var bcrypt = require('bcryptjs');
+var config = require('./_config');
 
 var itemSchema = new Schema ({
 	name: String,
@@ -8,9 +10,20 @@ var itemSchema = new Schema ({
 });
 
 var userSchema = new Schema({
-    username: String,
-    password: String
+  email: {
+    type: String,
+    unique: true,
+    lowercase: true
+  },
+  password: {
+    type: String,
+    select: false
+  },
+  githubProfileID: {
+    type: String
+  },
 });
+
 
 var Item = mongoose.model("items", itemSchema);
 var User = mongoose.model("users", userSchema);
