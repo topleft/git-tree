@@ -20,7 +20,8 @@ app.config(['$routeProvider', function($routeProvider){
 app.config(['$authProvider', function($authProvider){
   $authProvider.github({
     url: '/auth/github',
-    clientId: 'ffc8045c4eabdb9e6328',//will need to update per user?
+    clientId: '264120f7c49937010354',
     redirectUri: window.location.origin
   });
+  console.log(window.location.origin);
 }]);
