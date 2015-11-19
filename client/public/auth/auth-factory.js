@@ -22,7 +22,7 @@ angular.module('factories').factory('authFactory', [ '$http','$q', function($htt
 						if (status === 200 && data.status) {
 							user = true;
 							q.resolve();
-						} 
+						}
 						else {
 							q.reject();
 						}

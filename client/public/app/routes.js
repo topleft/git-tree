@@ -8,7 +8,7 @@ app.config(['$routeProvider', function($routeProvider){
 	})
 	.when('/login', {
 		templateUrl: '../auth/login.html',
-		controller: 'loginController',
+		controller: 'authController',
 		access: {restricted: false}
 	})
 	.when('/tree', {
@@ -20,7 +20,7 @@ app.config(['$routeProvider', function($routeProvider){
 app.config(['$authProvider', function($authProvider){
   $authProvider.github({
     url: '/auth/github',
-    clientId: 'ffc8045c4eabdb9e6328',//will need to update per user
+    clientId: 'ffc8045c4eabdb9e6328',//will need to update per user?
     redirectUri: window.location.origin
   });
 }]);
