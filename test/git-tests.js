@@ -9,28 +9,16 @@ chai.use(chaiHttp);
 
 describe('git API routes', function () {
 
-  describe('git branches', function () {
-
-    it('should return git branch for user', function(done){
-      chai.request(githubAPI)
-        .get('/repos/topleft/git-tree/branches/master')
-        .end(function(err, res){
-          console.log(res.body);
-          res.should.have.status(200);
-          res.should.be.json;
-          res.body.should.be.a('object');
-          res.body.commit.should.have.property('sha');
-          done();
-        });
-
-      });
-  });
-
+  
   describe('git repos', function() {
 
-    xit('should return git repo as a json object', function(done) {
-      chai.request('https://')
-        .get('/repos/topleft/git-tree/branches/master')
+    it('should return git repo as a json object', function(done) {
+      chai.request(server)
+        .get('/github/repo')
+        .send({
+          user: 'topleft',
+          repo: 'git-tree'
+        })
         .end(function(err, res){
           console.log(res.body);
           res.should.have.status(200);
@@ -67,4 +55,6 @@ describe('git API routes', function () {
 
   });
 });
+
+
 
