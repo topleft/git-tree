@@ -19,10 +19,8 @@ router.get('/github/repo', function(req, res, next) {
         }
       };      
   request(options, function(error, response, body){
-    console.log('body ',JSON.parse(body).commit.sha);
     var obj = JSON.parse(body);
     var sha = obj.commit.sha;
-    console.log(sha)
     var options = {
       url: 'https://api.github.com/repos/'+user+'/'+repo+'/git/trees/'+sha+'?recursive=1', 
       headers: { 
@@ -31,7 +29,8 @@ router.get('/github/repo', function(req, res, next) {
         }
       };
     request(options, function(error, response, body){
-      res.json(body);
+      var repo = JSON.parse(body);
+      res.json(repo);
     });
   });
 });
