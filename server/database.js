@@ -12,11 +12,8 @@ var userSchema = new Schema({
     password: String
 });
 
-
 var Item = mongoose.model("items", itemSchema);
 var User = mongoose.model("users", userSchema);
-
-
 
 module.exports = {
 	Item: Item,
