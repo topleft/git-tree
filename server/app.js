@@ -9,9 +9,6 @@ var bodyParser = require('body-parser');
 var swig = require('swig');
 var mongoose = require('mongoose');
 var http = require("http");
-var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
-var expressSession = require('express-session');
 // var hash = require('bcrypt-nodejs');
 var User = require('./database').User;
 
@@ -53,18 +50,9 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(require('express-session')({
-    secret: 'keyboard cat',
-    resave: false,
-    saveUninitialized: false
-}));
 app.use(express.static(path.join(__dirname, '../client/public')));
 
-app.use(passport.initialize());
-app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
-
-
 
 // *** main routes *** //
 app.get('/', function(req, res, next) {
@@ -74,10 +62,6 @@ app.get('/', function(req, res, next) {
 app.use('/', routes);
 app.use('/', gitRoutes);
 
-// passport config
-passport.use(new LocalStrategy(User.authenticate()));
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
 
 
 
