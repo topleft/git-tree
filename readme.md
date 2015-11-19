@@ -1,23 +1,29 @@
-## RESTful API
+### Set up the app locally
 
-### technologies
-* MEAN Stack - MongoDB, Express, AngularJS, NodeJS
-* Mongoose
-* Passport Local Authentication
-* Gulp
+In the root folder create a new file `_env.sh` and add:
 
+```sh
+export githubClientSecret=YOUR_CLIENT_SECRET
+```
 
-### features
-* authentication
-* highly modular
-* custom directives
-* isolated scopes
-* simple, effective UI for CRUD operations
-	* in-place updating
-	* delete confirmation
-	* self clearing, infomative alerts
+In client/public/app/routes.js:
 
+```javascript
+app.config(['$authProvider', function($authProvider){
+  $authProvider.github({
+    url: '/auth/github',
+    clientId: UPDATE_CLIENT_ID
+    redirectUri: window.location.origin
+  });
+  console.log(window.location.origin);
+}]);
+```
 
-#### Angular Directives
+In the command line run: 
 
-* Link vs. Scope
+```sh
+source _env.sh
+gulp
+```
+
+#### all set!
