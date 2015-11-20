@@ -6,7 +6,6 @@ var request = require('request');
 
 // think about adding isAuthenticated
 router.post('/github/repo', function(req, res, next) {
-  console.log("USERRRRRRRRRR", req.body.token); 
 
   var user = req.body.user;
   var repo = req.body.repo;

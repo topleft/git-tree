@@ -20,7 +20,7 @@ app.config(['$routeProvider', function($routeProvider){
 app.config(['$authProvider', function($authProvider){
   $authProvider.github({
     url: '/auth/github',
-    clientId: 'fd295bc933e7acfe855d', //LOCAL
+    clientId: '264120f7c49937010354', // HEROKU
     redirectUri: window.location.origin
   });
   console.log(window.location.origin);
