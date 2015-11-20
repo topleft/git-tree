@@ -6,7 +6,6 @@ var request = require('request');
 
 // think about adding isAuthenticated
 router.post('/github/repo', function(req, res, next) {
-  console.log("BODY", req.body);
   var user = req.body.user;
   var repo = req.body.repo;
   var userToken = req.body.token;
@@ -18,7 +17,6 @@ router.post('/github/repo', function(req, res, next) {
         }
       };      
   request(options, function(error, response, body){
-    console.log('BODY DEPTH 2: ', body)
     var obj = JSON.parse(body);
     var sha = obj.commit.sha;
     var options = {

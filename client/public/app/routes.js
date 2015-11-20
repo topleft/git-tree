@@ -23,5 +23,4 @@ app.config(['$authProvider', function($authProvider){
     clientId: '264120f7c49937010354', // HEROKU
     redirectUri: window.location.origin
   });
-  console.log(window.location.origin);
 }]);

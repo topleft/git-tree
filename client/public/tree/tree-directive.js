@@ -9,10 +9,9 @@ angular.module('directives').directive('treeTemplate', ['repoFactory', 'alertFac
         controller: function($scope){
           
           $scope.getRepo = function(){
-            console.log(repoFactory);
             repoFactory.getRepo($scope.repo.owner, $scope.repo.name)
               .success(function(data){
-                console.log(data);
+                console.log('Repo "'+$scope.repo.name+'": ', data);
                 // make data appear on the screen
                 // make success message appear on the screen
               });
