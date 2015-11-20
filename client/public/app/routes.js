@@ -12,15 +12,15 @@ app.config(['$routeProvider', function($routeProvider){
 		access: {restricted: false}
 	})
 	.when('/tree', {
-		templateUrl: '../tree/tree.html',
-		access: {restricted: false}
+		templateUrl: '../views/visual.html',
+		access: {restricted: true}
 	});
 }]);
 
 app.config(['$authProvider', function($authProvider){
   $authProvider.github({
     url: '/auth/github',
-    clientId: '264120f7c49937010354', // HEROKU
+    clientId: 'fd295bc933e7acfe855d', //LOCAL
     redirectUri: window.location.origin
   });
   console.log(window.location.origin);

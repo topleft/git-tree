@@ -62,7 +62,7 @@ app.get('/', function(req, res, next) {
 // *** main routes *** //
 app.use('/', mainRoutes);
 app.use('/auth', authRoutes);
-app.use('/git/tree', gitRoutes);
+app.use('/', gitRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -13,11 +13,11 @@ angular.module('directives').directive('formTemplate', ['crudFactory', 'alertFac
 						var item = crudFactory.isValidItem($scope.collections.newItem.name, $scope.collections.newItem.type, $scope.collections.items);
 						
 						if (item){
-						crudFactory.createItem($scope.collections.newItem.name, $scope.collections.newItem.type).
-							success(function(response){
-							$scope.collections.items.push(response[0]);
-							$scope.collections.newItem = {};
-							alertFactory.add("success", "Success! Item ADDED to database.");
+						crudFactory.createItem($scope.collections.newItem.name, $scope.collections.newItem.type)
+							.success(function(response){
+								$scope.collections.items.push(response[0]);
+								$scope.collections.newItem = {};
+								alertFactory.add("success", "Success! Item ADDED to database.");
 							});
 						}
 						else{

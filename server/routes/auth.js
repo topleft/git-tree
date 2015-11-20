@@ -5,6 +5,7 @@ var qs = require('querystring');
 var User = require('../database').User;
 var config = require('../_config');
 var mongoose = require('mongoose');
+var jwt = require('jwt-simple');
 
 var helper = require('../logic/auth');
 
@@ -23,7 +24,6 @@ router.post('/github', function(req, res) {
   request.get({ url: accessTokenUrl, qs: params }, function(err, response, accessToken) {
     accessToken = qs.parse(accessToken);
     var headers = { 'User-Agent': 'Satellizer' };
-
     // Step 2. Retrieve profile information about the current user.
     request.get({ url: userApiUrl, qs: accessToken, headers: headers, json: true }, function(err, response, profile) {
       // Step 3a. Link user accounts.
@@ -60,6 +60,7 @@ router.post('/github', function(req, res) {
             });
           }
           var user = new User();
+          user.accessToken = accessToken.access_token;
           user.email = profile.email;
           user.githubProfileID = profile.id;
           user.save(function() {

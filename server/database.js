@@ -22,6 +22,9 @@ var userSchema = new Schema({
   githubProfileID: {
     type: String
   },
+  accessToken: {
+    type: String
+  }
 });
 
 

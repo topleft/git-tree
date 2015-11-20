@@ -1,2 +1,2 @@
- 
-export githubClientSecret=A7e66d8d5fd43c49a070912f95c278ce596a4adc2
+#!/bin/sh 
+export GITHUB_SECRET=a53c8e8294e2cf30ee393349a6c0b5dc05112470

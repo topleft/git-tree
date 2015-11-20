@@ -3,14 +3,14 @@ var router = express.Router();
 var db = require('../database.js');
 var user = require('../database.js').User;
 var request = require('request');
-var token = "UPDATE";
 
+// think about adding isAuthenticated
+router.post('/github/repo', function(req, res, next) {
+  console.log("USERRRRRRRRRR", req.body.token); 
 
-router.get('/github/repo', function(req, res, next) {
-  
   var user = req.body.user;
   var repo = req.body.repo;
-  var userToken = token;
+  var userToken = req.body.token;
   var options = {
       url: 'https://api.github.com/repos/'+user+'/'+repo+'/branches/master', 
       headers: { 
