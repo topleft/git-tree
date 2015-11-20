@@ -26,6 +26,7 @@ router.post('/github', function(req, res) {
     var headers = { 'User-Agent': 'Satellizer' };
     // Step 2. Retrieve profile information about the current user.
     request.get({ url: userApiUrl, qs: accessToken, headers: headers, json: true }, function(err, response, profile) {
+      console.log('Profile: ', profile);
       // Step 3a. Link user accounts.
       if (req.headers.authorization) {
         User.findOne({ github: profile.id }, function(err, existingUser) {
@@ -38,6 +39,7 @@ router.post('/github', function(req, res) {
             if (!user) {
               return res.status(400).send({ message: 'User not found' });
             }
+            user.accessToken = accessToken.access_token;
             user.email = profile.email;
             user.githubProfileID = profile.id;
             user.save(function() {
