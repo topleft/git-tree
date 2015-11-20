@@ -1,2 +1,0 @@
-#!/bin/sh 
-export GITHUB_SECRET=a53c8e8294e2cf30ee393349a6c0b5dc05112470
