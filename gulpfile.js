@@ -14,6 +14,7 @@ var clean = require('gulp-clean');
 var concat = require('gulp-concat');
 var runSequence = require('run-sequence');
 var mocha = require('gulp-mocha');
+var sass = require('gulp-sass');
 
 
 /**
@@ -21,8 +22,11 @@ var mocha = require('gulp-mocha');
  */
 
 var paths = {
+  sass: [
+    './client/public/styles/scss/*.scss',
+  ],
   styles: [
-    './client/public/css/*.css',
+    './client/public/styles/css/*.css',
   ],
   scripts: [
     '.client/public/js/*.js',
@@ -64,6 +68,16 @@ gulp.task('browser-sync', ['nodemon'], function(done) {
     port: 5000,  // use *different* port than above
     notify: true
   }, done);
+});
+
+gulp.task('styles', function () {
+  return gulp.src(paths.sass)
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('./client/styles/css'));
+});
+
+gulp.task('sass:watch', function () {
+  gulp.watch(paths.sass, ['styles']);
 });
 
 gulp.task('nodemon', function (cb) {
@@ -132,7 +146,7 @@ gulp.task('test', function(){
 });
 
 // *** default task *** //
-gulp.task('default', ['browser-sync', 'watch'], function(){});
+gulp.task('default', ['browser-sync', 'watch', 'sass:watch'], function(){});
 
 // *** build task *** //
 gulp.task('build', function() {
