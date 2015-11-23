@@ -8,11 +8,11 @@ angular.module('myApp', ['routes', 'directives', 'factories'])
       //   $route.reload();
       // }
 
-      //with satellizer, but error with next.access in console
-	    // if (next.access.restricted && !$auth.isAuthenticated()) {
-	    //   $location.path('/login');
-	    //   $route.reload();
-	    // }
+      // with satellizer, but error with next.access in console
+	    if (next.access.restricted && !$auth.isAuthenticated()) {
+	      $location.path('/login');
+	      $route.reload();
+	    }
 	  });
 	});
 

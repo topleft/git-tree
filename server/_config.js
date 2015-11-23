@@ -1,6 +1,4 @@
 
-
-
 var mongoDBS = {
 	test: 'mongodb://localhost/tree-test',
 	development: 'mongodb://localhost/tree',
