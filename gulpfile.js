@@ -13,7 +13,7 @@ var minifyCSS = require('gulp-minify-css');
 var clean = require('gulp-clean');
 var concat = require('gulp-concat');
 var runSequence = require('run-sequence');
-// var mocha = require('gulp-mocha');
+var mocha = require('gulp-mocha');
 
 
 /**
