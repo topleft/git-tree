@@ -11,7 +11,7 @@
     three: [ 'css', 'js', 'js/main',  'test', 'test/lib', 'test/lib/jasmine-2.0.0', 'server', 'server/test', 'server/test/group', 'server/model' ]
   };
 
-  data.duplicatPaths = {
+  data.duplicatePaths = {
     one : [ 'css', 'js', 'test', 'test/lib/jasmine-2.0.0', 'css', 'js', 'test', 'test/lib/jasmine-2.0.0' ],
     two : [ 'css', 'js', 'js/main',  'test', 'test/lib', 'test/lib/jasmine-2.0.0', 'css', 'js', 'js/main',  'test', 'test/lib', 'test/lib/jasmine-2.0.0' ],
     three : [ 'css', 'js', 'js/main',  'test', 'test/lib', 'test/lib/jasmine-2.0.0', 'server', 'server/test', 'server/test/group', 'server/model', 'css', 'js', 'js/main',  'test', 'test/lib', 'test/lib/jasmine-2.0.0', 'server', 'server/test', 'server/test/group', 'server/model' ]
@@ -27,7 +27,7 @@
 
   data.file = {
     "sha": "fb46a4fec0d44d014b318f5b00c61e9111898db4",
-    "url": "https://api.github.com/repos/topleft/repo/test/trees/fb46a4fec0d44d014b318f5b00c61e9111898db4",
+    "url": "https://api.github.com/repos/topleft/test/trees/fb46a4fec0d44d014b318f5b00c61e9111898db4",
     "tree": [
       {
         "path": "main.js",

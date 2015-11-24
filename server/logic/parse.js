@@ -1,4 +1,8 @@
+
 ( function () {
+
+var util = require('util');
+var data= require('./../../test/test-helper-data/helper-data.js')
 
   module.exports = {
 
@@ -6,8 +10,7 @@
       var repoName = input.url.split('/')[5];
       var rootArray = input.tree;
       var allChildren = this.createChildren(rootArray);
-      var uniquePaths = this.reduceToUnique(Object.keys(allChildren));
-      var deepestPaths = this.findDeepestPaths(uniquePaths);
+      var deepestPaths = this.findDeepestPaths(Object.keys(allChildren));
       var result = this.createFinalObject(deepestPaths, allChildren, repoName);
       result = JSON.stringify(result);
       result = JSON.parse(result);
@@ -20,7 +23,7 @@
       var filesObj = files.reduce( function (obj, item) {
         var path = item.path.slice();
         path = path.split('/');
-        var file = path.pop()
+        var file = path.pop();
         path = path.join('/');
         var child = {name: file, url: item.url};       
         
@@ -48,7 +51,7 @@
         }
 
         return deep;
-        
+
         // var isSameRoot = true;
 
         // // compares the first file in the path
@@ -100,14 +103,10 @@
         repoObject.children.push(nestedObj);
       });
       return repoObject;
-    },
-    reduceToUnique: function (arr) {
-      var seen = {};
-      return arr.filter(function(item) {
-          return seen.hasOwnProperty(item) ? false : (seen[item] = true);
-      });
     }
 
   };
+
+
 
 })();
