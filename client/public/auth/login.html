@@ -1,12 +1,12 @@
 
-<div class="row">
-	<div class="small-3 small-centered columns">
+<div class="grid-block">
+	<div class="small-8 align-center grid-content">
 
 		<h2>Login to access repos</h2>
 
 		<div ng-show="error" class="alert alert-danger">{{errorMessage}}</div><br>
 
-		<button class="btn btn-block btn-success" ng-click="authenticate('github')">Sign in with GitHub</button>
+		<a class="secondary button" ng-click="authenticate('github')">Sign in with GitHub</a>
 
 	</div>
 </div>
