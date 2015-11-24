@@ -6,3 +6,4 @@ npm-debug.log
 _keys.js
 _env.sh
 client/public/styles/vendor/
+bower_components
