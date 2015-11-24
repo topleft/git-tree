@@ -32,7 +32,7 @@ describe("Whole Hog Crud", function(){
 
 // it shoulds ------------------- //
 
-	it("should get all items from DB", function(done){
+	xit("should get all items from DB", function(done){
 		chai.request(server)
 			.get('/items')
 			.end(function(err, res){
@@ -49,7 +49,7 @@ describe("Whole Hog Crud", function(){
 			});
 	});
 
-	it("should get one item from DB", function(done){
+	xit("should get one item from DB", function(done){
 		chai.request(server)
 			.get('/items/'+id)
 			.end(function(err, res){
@@ -65,7 +65,7 @@ describe("Whole Hog Crud", function(){
 				done();
 			});	
 	});
-	it("should post item to DB", function(done){
+	xit("should post item to DB", function(done){
 		chai.request(server)
 			.post('/items/'+"new thing/"+"more stuff")
 			.end(function(err, res){
@@ -79,7 +79,7 @@ describe("Whole Hog Crud", function(){
 				done();		
 			});
 	});
-	it("should update an item in the DB", function(done){
+	xit("should update an item in the DB", function(done){
 		chai.request(server)
 			.put('/items/'+id+"/new thing/"+"more stuff")
 			.end(function(err, res){
@@ -94,7 +94,7 @@ describe("Whole Hog Crud", function(){
 				done();
 			});		
 	});
-	it("should delete an item from DB", function(done){
+	xit("should delete an item from DB", function(done){
 		chai.request(server)
 			.delete('/items/'+id)
 			.end(function(err, res){
