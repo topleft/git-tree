@@ -73,7 +73,7 @@ gulp.task('browser-sync', ['nodemon'], function(done) {
 gulp.task('styles', function () {
   return gulp.src(paths.sass)
     .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest('./client/styles/css'));
+    .pipe(gulp.dest('./client/public/styles/css'));
 });
 
 gulp.task('sass:watch', function () {
