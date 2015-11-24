@@ -42,7 +42,7 @@ describe('tree parser', function () {
 
     xit('should create an object with paths as keys(strings) and an array of children files (objects)', function () {       
       var expected = '';
-      var result = parse.createChildren(data.paths.one);
+      var result = parse.createChildren(data.repo);
       expect(result).toEqual(expected);
     });
 
