@@ -5724,3 +5724,6 @@ body.is-reveal-open {
 
 .top-margin {
   margin-top: 7rem; }
+
+label {
+  font-weight: bold; }
