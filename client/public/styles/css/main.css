@@ -5721,3 +5721,6 @@ body.is-reveal-open {
 
 .foundation-mq {
   font-family: "small=0em&medium=40em&large=75em&xlarge=90em&xxlarge=120em"; }
+
+.top-margin {
+  margin-top: 7rem; }
