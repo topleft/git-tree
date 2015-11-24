@@ -22,7 +22,7 @@
         path = path.split('/');
         var file = path.pop()
         path = path.join('/');
-        var child = {name: file, url: item.url}
+        var child = {name: file, url: item.url};       
         
         if (!obj[path]) {
           obj[path] = [child];
@@ -35,14 +35,46 @@
     },
     findDeepestPaths: function (directories) {
       return directories.reduce( function (deep, dir, i, arr ) {
+        
         if (!arr[i+1]) {
           deep.push(dir);
           return deep;
         }
-        var curr = dir.split('/').shift();
-        var next = arr[i+1].split('/').shift();
-        if (curr !== next && dir !== '') { deep.push(dir) }
+
+
+        if (arr[i+1].split('/').length - arr[i].split('/').length !== 1 ) {
+          deep.push(dir);
           return deep;
+        }
+
+        return deep;
+        
+        // var isSameRoot = true;
+
+        // // compares the first file in the path
+        // var curr = dir.split('/').shift();
+        // var next = arr[i+1].split('/').shift();  
+        // console.log('root:', { curr:curr, next:next } );
+        // if (curr !== next && dir !== '') {
+        //   isSame = false;
+        // }
+          
+        // // compares last and second to last file in the paths
+        // curr = dir.split('/');
+        // next = arr[i+1].split('/');
+        // next.pop();
+        // curr = curr.join('/');
+        // next = next.join('/'); 
+
+        // console.log('second to last:', {curr:curr, next:next})
+        // if (curr !== next && dir !== '' || !isSameRoot) {
+        //   console.log('**pushed?',dir, true) 
+        //   deep.push(dir) 
+        //   return deep 
+        // }
+        // console.log('pushed?', false) 
+
+
       }, []);
     },
     createFinalObject: function(names, childrenObj, repoName) {
@@ -75,7 +107,7 @@
           return seen.hasOwnProperty(item) ? false : (seen[item] = true);
       });
     }
-    
+
   };
 
 })();

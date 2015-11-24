@@ -1,23 +1,33 @@
 
-var parse = require('./parse.js');
-var data = require('./data.js');
-var expected = require('./expected.js')
+process.env.NODE_ENV = 'test';
+
+var parse = require('../server/logic/parse.js');
+var data = require('./test-helper-data/helper-data.js');
+var chai = require("chai");
+var chaiHttp = require('chai-http');
+var githubAPI = 'https://api.github.com';
+var should = chai.should();
+var expect = chai.expect;
+chai.use(chaiHttp);
+
 
 describe('tree parser', function () {
 
 
   describe('findDeepestPaths', function () {
 
-    xit('should find the deepest paths in a list of paths', function () {       
+    it('should find the deepest paths in a list of paths', function () {       
       var expected = data.deepestPaths.one;
       var result = parse.findDeepestPaths(data.paths.one);
-      expect(result).toEqual(expected);
+      console.log("One",expected, result)
+      expect(result).to.eql(expected);
     });
 
-    xit('should find the deepest paths without any duplicate roots', function () {
+    it('should find the deepest paths without any duplicate roots', function () {
       var expected = data.deepestPaths.three;
       var result = parse.findDeepestPaths(data.paths.three);
-      expect(result).toEqual(expected);
+      console.log(expected, result)
+      expect(result).to.eql(expected);
     });
 
   });
@@ -25,28 +35,35 @@ describe('tree parser', function () {
   describe('reduceToUnique', function () {
 
     xit('should create a list of all unique paths', function () {       
-      var expected = '';
-      var result = parse.reduceToUnique();
+      var expected = data.paths.one ;
+      var result = parse.reduceToUnique(data.duplicatePaths.one);
       expect(result).toEqual(expected);
     });
 
     xit('should include similar paths', function () {
-      var expected = '';
-      var result = parse.reduceToUnique();
-      expect(result).toEqual(expected);
+      var expected = data.paths.two ;
+      var result = parse.reduceToUnique(data.duplicatePaths.two);
+      expect(result).toEqual(expected);    
+    });
+
+    xit('should include similar paths', function () {
+      var expected = data.paths.three ;
+      var result = parse.reduceToUnique(data.duplicatePaths.three);
+      expect(result).toEqual(expected);    
     });
 
   });
 
   describe('createChildren', function () {
 
-    xit('should create an object with paths as keys(strings) and an array of children files (objects)', function () {       
-      var expected = '';
-      var result = parse.createChildren(data.repo);
+    xit('should create an object with paths as keys(strings) and an array of children files (objects)', function () {
+
+      var expected = {'js': [{ name: "js/main.js", url: "https://api.github.com/repos/topleft/test/git/blobs/7e5a1f91d9f8531cb94ca839898fca58302a17b4" }]};
+      var result = parse.createChildren(data.directory.tree);
       expect(result).toEqual(expected);
     });
 
-    xit('it should include similar paths', function () {
+    xit('should create an object with paths as keys(strings) and an array of children files (objects)', function () {
       var expected = '';
       var result = parse.createChildren(data.paths.three);
       expect(result).toEqual(expected);

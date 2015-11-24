@@ -11,7 +11,7 @@ chai.use(chaiHttp);
 describe('git API routes', function () {
   describe('git repos', function() {
 
-    it('should return git repo as a json object', function(done) {
+    xit('should return git repo as a json object', function(done) {
       chai.request(server)
         .post('/github/repo')
         .send({
