@@ -4,5 +4,4 @@ node_modules/
 npm-debug.log
 _keys.js
 _env.sh
-client/public/vendor/*
-bower_components/
+
