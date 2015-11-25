@@ -3,6 +3,7 @@ var router = express.Router();
 var db = require('../database.js');
 var user = require('../database.js').User;
 var request = require('request');
+var parse = require('../logic/parse.js')
 
 // think about adding isAuthenticated
 router.post('/github/repo', function(req, res, next) {
@@ -29,7 +30,8 @@ router.post('/github/repo', function(req, res, next) {
       };
     request(options, function(error, response, body){
       var repo = JSON.parse(body);
-      res.json(repo);
+      var d3Repo = parse.parse(repo);
+      res.json(d3Repo);
     });
   });
 });

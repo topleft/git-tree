@@ -2,11 +2,11 @@
 ( function () {
 
 var util = require('util');
-var data= require('./../../test/test-helper-data/helper-data.js')
+var data= require('./../../test/test-helper-data/helper-data.js');
 
   module.exports = {
 
-    parse: function (input) {    
+    parse: function (input) {
       var repoName = input.url.split('/')[5];
       var rootArray = input.tree;
       var allChildren = this.createChildren(rootArray);
@@ -25,8 +25,7 @@ var data= require('./../../test/test-helper-data/helper-data.js')
         path = path.split('/');
         var file = path.pop();
         path = path.join('/');
-        var child = {name: file, url: item.url};       
-        
+        var child = {name: file, url: item.url};
         if (!obj[path]) {
           obj[path] = [child];
         } else {
@@ -38,51 +37,26 @@ var data= require('./../../test/test-helper-data/helper-data.js')
     },
     findDeepestPaths: function (directories) {
       return directories.reduce( function (deep, dir, i, arr ) {
-        
         if (!arr[i+1]) {
           deep.push(dir);
           return deep;
         }
-
-
         if (arr[i+1].split('/').length - arr[i].split('/').length !== 1 ) {
           deep.push(dir);
           return deep;
         }
-
         return deep;
-
-        // var isSameRoot = true;
-
-        // // compares the first file in the path
-        // var curr = dir.split('/').shift();
-        // var next = arr[i+1].split('/').shift();  
-        // console.log('root:', { curr:curr, next:next } );
-        // if (curr !== next && dir !== '') {
-        //   isSame = false;
-        // }
-          
-        // // compares last and second to last file in the paths
-        // curr = dir.split('/');
-        // next = arr[i+1].split('/');
-        // next.pop();
-        // curr = curr.join('/');
-        // next = next.join('/'); 
-
-        // console.log('second to last:', {curr:curr, next:next})
-        // if (curr !== next && dir !== '' || !isSameRoot) {
-        //   console.log('**pushed?',dir, true) 
-        //   deep.push(dir) 
-        //   return deep 
-        // }
-        // console.log('pushed?', false) 
-
-
       }, []);
     },
     createFinalObject: function(names, childrenObj, repoName) {
       var repoObject = {'name': repoName, 'children': []};
-      repoObject.children.push(childrenObj[''][0]);
+      if ( childrenObj[''] ) {
+        childrenObj[''].forEach(function(child){
+          repoObject.children.push(child);
+        });
+        delete childrenObj[''];
+      }
+
       names.forEach( function (path) {
         var splitPath = path.split('/');
         var nestedObj = splitPath.reduceRight(function ( base, name, i, arr ) {
@@ -96,11 +70,12 @@ var data= require('./../../test/test-helper-data/helper-data.js')
             var currentPath = arr.slice(0, i+1).join('/');
             if (childrenObj[currentPath]) {
               nested.children = childrenObj[currentPath];
+              delete childrenObj[currentPath];
             }
             if (base !== undefined) { nested.children.push(base) }
             return nested;
         }, {});
-        repoObject.children.push(nestedObj);
+        if (nestedObj.name !== '') { repoObject.children.push(nestedObj); }
       });
       return repoObject;
     }
