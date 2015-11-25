@@ -20,10 +20,11 @@
 </div> -->
 
 <div class="grid-frame">
-  <div id="sidebar" class="medium-4 grid-block">
+  <div id="sidebar" class="medium-3 grid-block">
     <div class="grid-content">
       <div class="title-bar">
         <span class="title left">Your Repo</span>
+
       </div>
 
       <div class="title-bar">
@@ -33,15 +34,8 @@
       <div class="title-bar">
         <span class="title left">Search</span>
       </div>
-
-      <div id="repo-list"></div>
-    </div>
-  </div>
-
-
-  <div id="main" class="medium-8 grid-block">
-      <div class="grid-content">
-        <form ng-submit="getRepo()">
+      <div class="title-bar">
+        <form ng-submit="getRepo()" class="miedium-12 grid-block">
           <div>
             <label>Repo Owner</label>
             <input type="text" class="form-control" ng-model='repo.owner' id="username" placeholder="Enter username..."  required>
@@ -51,13 +45,37 @@
             <input type="text" class="form-control" ng-model='repo.name' id="repo" placeholder="Enter repo name..." required>
           </div>
           <div>
-            <button type="submit" class="secondary button">Submit</button>
+            <button type="submit" class="dark button">Submit</button>
           </div>
         </form>
+      </div>
+
+      <div id="repo-list" class="title-bar">
+      </div>
+    </div>
+  </div>
+
+
+  <div id="repo-tree" class="medium-8 grid-block">
+      <div class="grid-content">
+      <!-- enter tree stuff here -->
       </div>
     </div>
   </div>
 </div>
+
+<zf-accordion auto-open="false" collapsible="true" multi-open="true">
+<zf-accordion-item title="Auto Open">
+Auto open opens the first tab on render.
+</zf-accordion-item>
+<zf-accordion-item title="Collapsible">
+Collapsible allows toggable tabs. Click on a tab to open or close it.
+</zf-accordion-item>
+<zf-accordion-item title="Multi Open">
+Multi open allows for multiple tabs to be open at once.
+</zf-accordion-item>
+</zf-accordion>
+
 
 
 

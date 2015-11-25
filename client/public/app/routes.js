@@ -24,3 +24,4 @@ app.config(['$authProvider', function($authProvider){
     redirectUri: window.location.origin
   });
 }]);
+
