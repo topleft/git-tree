@@ -9,9 +9,9 @@ var should = chai.should();
 chai.use(chaiHttp);
 
 describe('git API routes', function () {
-  describe('git repos', function() {
+  describe('git single user repo', function() {
 
-    xit('should return git repo as a json object', function(done) {
+    it('should return git repo as a json object', function(done) {
       chai.request(server)
         .post('/github/repo')
         .send({
@@ -20,13 +20,11 @@ describe('git API routes', function () {
           token: token,
         })
         .end(function(err, res){
-          // console.log("TOKEN", token)
-
-          console.log('_______________________');
-            res.should.have.status(200);
+          res.should.have.status(200);
           res.should.be.json;
-          res.body.should.have.property('sha');
           res.body.should.be.a('object');
+          res.body.should.have.property('name');
+          res.body.should.have.property('children');
           done();
       });    
     });
@@ -41,9 +39,38 @@ describe('git API routes', function () {
 
   });
 
-  describe('git repos', function() {
+  describe('git all repos for user', function() {
 
-    xit('should return a list of git repos', function(){
+    it('should return a list of git repos', function(done){
+      chai.request(server)
+        .post('/github/user/repos')
+        .send({
+          user: 'topleft',
+          token: token,
+        })
+        .end(function(err, res){
+          res.should.have.status(200);
+          res.should.be.json;
+          res.body[0].should.have.property('name');
+          res.body[0].should.be.a('object');
+          done();
+      });
+    });
+
+    it('should return a list of git repos', function(done){
+      chai.request(server)
+        .post('/github/user/repos')
+        .send({
+          user: 'elvece',
+          token: token,
+        })
+        .end(function(err, res){
+          res.should.have.status(200);
+          res.should.be.json;
+          res.body[0].should.have.property('name');
+          res.body[0].should.be.a('object');
+          done();
+      }); 
       
     });
 
@@ -56,6 +83,31 @@ describe('git API routes', function () {
     });
 
   });
+
+ describe('get details for one repo', function() {
+
+    it('should return a list of git repos', function(done){
+      chai.request(server)
+        .post('/github/user/repo/details')
+        .send({
+          user: 'topleft',
+          repo: 'git-tree',
+          token: token
+        })
+        .end(function(err, res){
+          console.log(res.body)
+          res.should.have.status(200);
+          res.should.be.json;
+          res.body.should.be.a('object');
+          res.body.should.have.property('name');
+          res.body.should.have.property('url');
+          res.body.should.have.property('size');
+          done();
+      });
+    });
+
+  });
+
 });
 
 

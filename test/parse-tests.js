@@ -19,14 +19,12 @@ describe('tree parser', function () {
     it('should find the deepest paths in a list of paths', function () {       
       var expected = data.deepestPaths.one;
       var result = parse.findDeepestPaths(data.paths.one);
-      console.log("One",expected, result)
       expect(result).to.eql(expected);
     });
 
     it('should find the deepest paths without any duplicate roots', function () {
       var expected = data.deepestPaths.three;
       var result = parse.findDeepestPaths(data.paths.three);
-      console.log(expected, result)
       expect(result).to.eql(expected);
     });
 
