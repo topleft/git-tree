@@ -1,5 +1,5 @@
 
-<div class="grid-frame">
+<!-- <div class="grid-frame">
   <div class="grid-block align-center top-margin">
     <div class="medium-6 grid-content">
       <form ng-submit="getRepo()">
@@ -17,6 +17,47 @@
       </form>
     </div>
   </div>
+</div> -->
+
+<div class="grid-frame">
+  <div id="sidebar" class="medium-4 grid-block">
+    <div class="grid-content">
+      <div class="title-bar">
+        <span class="title left">Your Repo</span>
+      </div>
+
+      <div class="title-bar">
+        <span class="title left">Recent</span>
+      </div>
+
+      <div class="title-bar">
+        <span class="title left">Search</span>
+      </div>
+
+      <div id="repo-list"></div>
+    </div>
+  </div>
+
+
+  <div id="main" class="medium-8 grid-block">
+      <div class="grid-content">
+        <form ng-submit="getRepo()">
+          <div>
+            <label>Repo Owner</label>
+            <input type="text" class="form-control" ng-model='repo.owner' id="username" placeholder="Enter username..."  required>
+          </div>
+          <div>
+            <label>Repo</label>
+            <input type="text" class="form-control" ng-model='repo.name' id="repo" placeholder="Enter repo name..." required>
+          </div>
+          <div>
+            <button type="submit" class="secondary button">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
+
 
 
