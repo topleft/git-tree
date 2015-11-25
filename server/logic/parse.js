@@ -1,8 +1,6 @@
 
 ( function () {
 
-var util = require('util');
-var data= require('./../../test/test-helper-data/helper-data.js');
 
   module.exports = {
 
@@ -72,7 +70,7 @@ var data= require('./../../test/test-helper-data/helper-data.js');
               nested.children = childrenObj[currentPath];
               delete childrenObj[currentPath];
             }
-            if (base !== undefined) { nested.children.push(base) }
+            if (base !== undefined) { nested.children.push(base); }
             return nested;
         }, {});
         if (nestedObj.name !== '') { repoObject.children.push(nestedObj); }
