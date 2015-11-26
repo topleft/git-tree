@@ -3,7 +3,7 @@ process.env.NODE_ENV = 'test';
 var chai = require("chai");
 var chaiHttp = require('chai-http');
 var server = require("../server/app");
-var token = require('../_keys.js').token || USER_TOKEN;
+var token = proccess.env.USER_TOKEN;
 var githubAPI = 'https://api.github.com';
 var should = chai.should();
 chai.use(chaiHttp);
