@@ -1,4 +1,4 @@
-angular.module('myApp', ['routes', 'directives', 'factories'])
+var app = angular.module('myApp', ['routes', 'directives', 'factories', 'ui.router', 'ngAnimate', 'foundation'])
 	.run(function ($rootScope, $location, $route, $auth, authFactory) {
 	  $rootScope.$on('$routeChangeStart', function (event, next, current) {
 
@@ -16,5 +16,14 @@ angular.module('myApp', ['routes', 'directives', 'factories'])
 	  });
 	});
 
+app.config(['$urlRouterProvider', function($urlProvider){
+  $urlProvider.otherwise('/');
+}]);
 
+app.config(['$locationProvider', function($locationProvider){
+  $locationProvider.html5Mode({
+    enabled: false,
+    requirebase: false
+  });
+}]);
 
