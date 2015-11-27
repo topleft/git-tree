@@ -17,7 +17,7 @@ describe('git API routes', function () {
         .send({
           user: 'topleft',
           repo: 'git-tree',
-          token: token,
+          token: token
         })
         .end(function(err, res){
           res.should.have.status(200);
