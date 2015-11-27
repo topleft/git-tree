@@ -1,6 +1,6 @@
-var app = angular.module('myApp', ['routes', 'directives', 'factories', 'ui.router', 'ngAnimate', 'foundation'])
-	.run(function ($rootScope, $location, $route, $auth, authFactory) {
-	  $rootScope.$on('$routeChangeStart', function (event, next, current) {
+angular.module('myApp', ['routes', 'directives', 'factories', 'ui.router', 'ngAnimate', 'foundation'])
+  .run(function ($rootScope, $location, $route, $auth, authFactory) {
+    $rootScope.$on('$routeChangeStart', function (event, next, current) {
 
       //reference for factory refactor
       // if (next.access.restricted && authFactory.isLoggedIn() === false) {
@@ -8,22 +8,22 @@ var app = angular.module('myApp', ['routes', 'directives', 'factories', 'ui.rout
       //   $route.reload();
       // }
 
-      // with satellizer, but error with next.access in console
-	    if (next.access.restricted && !$auth.isAuthenticated()) {
-	      $location.path('/login');
-	      $route.reload();
-	    }
-	  });
-	});
+      if (next.access.restricted && !$auth.isAuthenticated()) {
+        $location.path('/login');
+        $route.reload();
+      }
+    });
+  })
+  .config(['$urlRouterProvider', function($urlProvider){
+    $urlProvider.otherwise('/');
+  }])
 
-app.config(['$urlRouterProvider', function($urlProvider){
-  $urlProvider.otherwise('/');
-}]);
+  .config(['$locationProvider', function($locationProvider){
+    $locationProvider.html5Mode({
+      enabled: false,
+      requirebase: false
+    });
+  }]);
 
-app.config(['$locationProvider', function($locationProvider){
-  $locationProvider.html5Mode({
-    enabled: false,
-    requirebase: false
-  });
-}]);
+
 
