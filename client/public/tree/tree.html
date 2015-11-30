@@ -1,27 +1,37 @@
 
   <div class= "col-sm-10 col-md-3">
     <div class="panel panel-default">
-      <div class="panel-heading">Repo</div>
-      <div class="panel-body">
-        <form ng-submit="getRepo()">
-          <div class="form-group">
-            <label for="item">Repo Owner</label>
-            <input type="text" class="form-control" ng-model='repo.owner' id="username" placeholder="Enter GitHub username..."  required>
-          </div>
-          <div class="form-group">
-            <label for="type">Your Repo</label>
-            <input type="text" class="form-control" ng-model='repo.name' id="repo" placeholder="Enter GitHub repo name..." required>
-          </div>
-          <div class="form-group">
-            <button type="submit" class="btn btn-default">Submit</button>
-          </div>
-        </form>
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="accordion" target="_self" href="##repo">
+          <div class="panel-heading">Repo</div>
+        </a>
+      <div id="repo" class="panel-collapse collapse in">
+        <div class="panel-body">
+          <form ng-submit="getRepo()">
+            <div class="form-group">
+              <label for="item">Repo Owner</label>
+              <input type="text" class="form-control" ng-model='repo.owner' id="username" placeholder="Enter GitHub username..."  required>
+            </div>
+            <div class="form-group">
+              <label for="type">Your Repo</label>
+              <input type="text" class="form-control" ng-model='repo.name' id="repo" placeholder="Enter GitHub repo name..." required>
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-default">Submit</button>
+            </div>
+          </form>
+        </div>
       </div>
-      <div class="panel-heading">Recent</div>
-      <div class="panel-body">recent stuff</div>
-      <div class="panel-heading">Search</div>
-      <div class="panel-body">
-        search bar
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="accordion" target="_self" href="##recent">
+        <div class="panel-heading">Recent</div>
+      </a>
+      <div id="recent" class="panel-collapse collapse in">
+        <div class="panel-body">recent stuff</div>
+      </div>
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="accordion" target="_self" href="##search">
+        <div class="panel-heading">Search</div>
+      </a>
+      <div id="search" class="panel-collapse collapse in">
+        <div class="panel-body">search bar</div>
       </div>
     </div>
   </div>
