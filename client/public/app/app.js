@@ -14,10 +14,6 @@ angular.module('myApp', ['routes', 'directives', 'factories'])
       }
     });
   })
-  .config(['$urlRouterProvider', function($urlProvider){
-    $urlProvider.otherwise('/');
-  }])
-
   .config(['$locationProvider', function($locationProvider){
     $locationProvider.html5Mode({
       enabled: false,
