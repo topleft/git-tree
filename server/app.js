@@ -2,15 +2,13 @@
 // require("./database.js")
 var express = require('express');
 var path = require('path');
-// var favicon = require('serve-favicon');
+var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var swig = require('swig');
 var mongoose = require('mongoose');
 var http = require("http");
-// var hash = require('bcrypt-nodejs');
-// var User = require('./database').User;
 
 // *** routes *** //
 var mainRoutes = require('./routes/index');
@@ -32,13 +30,6 @@ mongoose.connect(config.MONGO_URI[app.settings.env],
       console.log("Success. Connected to: "+config.MONGO_URI[app.settings.env]);
     }
   });
-
-
-// *** view engine *** //
-var swig = new swig.Swig();
-app.engine('html', swig.renderFile);
-app.set('view engine', 'html');
-
 
 
 // *** static directory *** //
