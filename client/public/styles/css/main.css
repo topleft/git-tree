@@ -1,3 +1,6 @@
+body {
+  margin-bottom: 60px; }
+
 .panel-heading {
   font-weight: bold;
   color: black;
@@ -6,3 +9,18 @@
 
 a:hover {
   text-decoration: none; }
+
+.panel-body p {
+  font-style: italic; }
+
+.container {
+  margin: 0; }
+
+ul {
+  list-style-type: none; }
+
+li {
+  display: inline; }
+
+.stats span:nth-child(0n+2) {
+  font-variant: small-caps; }
