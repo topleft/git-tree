@@ -1,17 +1,17 @@
 
-<div class='container '>
+<div class="container">
   <div class= "col-md-10 col-md-offset-1">
     <form ng-submit="getRepo()">
       <div class="form-group col-md-8 col-md-offset-2">
         <label for="item">Repo Owner</label>
-        <input type="text" class="form-control" ng-model='repo.owner' id="username" placeholder="username..."  required>
+        <input type="text" class="form-control" ng-model='repo.owner' id="username" placeholder="Enter GitHub username..."  required>
       </div>
       <div class="form-group col-md-8 col-md-offset-2">
         <label for="type">Repo</label>
-        <input type="text" class="form-control" ng-model='repo.name' id="repo" placeholder="repo name..." required>
+        <input type="text" class="form-control" ng-model='repo.name' id="repo" placeholder="Enter GitHub repo name..." required>
       </div>
       <div class="form-group col-md-8 col-md-offset-2">
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-default">Submit</button>
       </div>
     </form>
   </div>
