@@ -1,4 +1,4 @@
-angular.module('myApp', ['routes', 'directives', 'factories', 'ui.router', 'ngAnimate', 'foundation'])
+angular.module('myApp', ['routes', 'directives', 'factories'])
   .run(function ($rootScope, $location, $route, $auth, authFactory) {
     $rootScope.$on('$routeChangeStart', function (event, next, current) {
 
