@@ -37,18 +37,6 @@ var paths = {
   test: [
     'test/*.js'
   ]
-  // foundationJS: [
-  //   'bower_components/fastclick/lib/fastclick.js',
-  //   'bower_components/viewport-units-buggyfill/viewport-units-buggyfill.js',
-  //   'bower_components/tether/tether.js',
-  //   'bower_components/hammerjs/hammer.js',
-  //   'bower_components/angular/angular.js',
-  //   'bower_components/angular-animate/angular-animate.js',
-  //   'bower_components/angular-ui-router/release/angular-ui-router.js',
-  //   'bower_components/foundation-apps/js/vendor/**/*.js',
-  //   'bower_components/foundation-apps/js/angular/**/*.js',
-  //   '!bower_components/foundation-apps/js/angular/app.js'
-  // ],
 };
 
 var nodemonConfig = {
@@ -168,35 +156,3 @@ gulp.task('build', function() {
   );
 });
 
-
-// Compiles the Foundation for Apps directive partials into a single JavaScript file
-// gulp.task('copy:foundation', function(cb) {
-//   gulp.src('bower_components/foundation-apps/js/angular/components/**/*.html')
-//     .pipe($.ngHtml2js({
-//       prefix: 'components/',
-//       moduleName: 'foundation',
-//       declareModule: false
-//     }))
-//     .pipe($.uglify())
-//     .pipe($.concat('templates.js'))
-//     .pipe(gulp.dest('./cilent/public/views/'))
-//   ;
-
-//   cb();
-// });
-
-// Compiles and copies the Foundation for Apps JavaScript
-// gulp.task('uglify', ['uglify:foundation']);
-
-// gulp.task('uglify:foundation', function(cb) {
-//   var uglify = $.if(isProduction, $.uglify()
-//     .on('error', function (e) {
-//       console.log(e);
-//     }));
-
-//   return gulp.src(paths.foundationJS)
-//     .pipe(uglify)
-//     .pipe($.concat('foundation.js'))
-//     .pipe(gulp.dest('./client/public/js/'))
-//   ;
-// });
