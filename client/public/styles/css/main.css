@@ -38,7 +38,9 @@ line {
   stroke-width: 1.5px; }
 
 .node text {
-  font: 10px sans-serif; }
+  font: 12.5px;
+  font-variant: small-caps;
+}
 
 path.link {
   fill: none;
