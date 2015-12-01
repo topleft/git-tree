@@ -7,7 +7,7 @@ repoService.$inject = ['$http', '$window'];
   function repoService ($http, $window) {
 
     var service = {
-      getRepo: getRepo, 
+      getRepo: getRepo,
       getRepoDetails: getRepoDetails
     };
     return service;

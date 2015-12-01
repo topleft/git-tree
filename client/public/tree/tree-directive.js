@@ -7,14 +7,17 @@ angular.module('directives').directive('treeTemplate', ['repoFactory', 'alertFac
         },
         templateUrl: 'tree/tree.html',
         controller: function($scope){
-
+          $scope.repoObj = null;
           $scope.getRepo = function(){
             repoFactory.getRepo($scope.repo.owner, $scope.repo.name)
               .success(function(data){
+                $scope.repoObj = JSON.stringify(data);
                 console.log('Repo "'+$scope.repo.name+'": ', data);
+                // console.log('Repo.children "'+$scope.repo.name+'": ', data.children);
+                console.log('scope repoObj: '+$scope.repoObj);
                 repoFactory.getRepoDetails($scope.repo.owner, $scope.repo.name)
                   .success(function (data) {
-                    console.log('Repo details"'+$scope.repo.name+'": ', data);
+                    // console.log('Repo details"'+$scope.repo.name+'": ', data);
                   });
                 // make data appear on the screen
                 // make success message appear on the screen
