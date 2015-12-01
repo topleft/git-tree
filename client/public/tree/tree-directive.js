@@ -5,9 +5,12 @@ angular.module('directives').directive('treeTemplate', ['repoFactory', 'alertFac
         scope: {
           repo: '='
         },
+        // transclude: true,
         templateUrl: 'tree/tree.html',
         controller: function($scope){
           $scope.repoObj = null;
+          // $scope.drawTree = function(){
+          // console.log('testing');};
           $scope.getRepo = function(){
             repoFactory.getRepo($scope.repo.owner, $scope.repo.name)
               .success(function(data){

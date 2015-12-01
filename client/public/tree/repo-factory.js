@@ -21,7 +21,7 @@ repoService.$inject = ['$http', '$window'];
                   user: owner,
                   repo: repo,
                   token: token
-                }
+                },
         });
       }
 
