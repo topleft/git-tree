@@ -12,6 +12,10 @@ angular.module('directives').directive('treeTemplate', ['repoFactory', 'alertFac
             repoFactory.getRepo($scope.repo.owner, $scope.repo.name)
               .success(function(data){
                 console.log('Repo "'+$scope.repo.name+'": ', data);
+                repoFactory.getRepoDetails($scope.repo.owner, $scope.repo.name)
+                  .success(function (data) {
+                    console.log('Repo details"'+$scope.repo.name+'": ', data);
+                  })
                 // make data appear on the screen
                 // make success message appear on the screen
               });

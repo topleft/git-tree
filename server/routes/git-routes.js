@@ -62,7 +62,8 @@ router.post('/github/user/repo/details', function (req, res, next) {
         name: repoObj.name,
         size: repoObj.size,
         stars: repoObj.stargazers_count,
-        url: repoObj.html_url
+        url: repoObj.html_url,
+        language: repoObj.language
       };
       res.json(repoDetails); 
     } else {
