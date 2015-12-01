@@ -1,12 +1,8 @@
 angular.module('directives')
   .directive('tree', ['d3Service', function(d3Service) {
-    var link = function($scope, element, attrs, controller) {
-      // console.log('from d3: '+$scope.repoObj);
+    var link = function($scope, element, attrs, controller, $rootScope) {
       $scope.drawTree = function(){
-
-
         d3Service.d3().then(function(d3) {
-
 
           var margin = {top: 20, right: 120, bottom: 20, left: 120},
               width = 960 - margin.right - margin.left,
@@ -45,6 +41,8 @@ angular.module('directives')
             // root = flare;
             //test is test.js file, calling in layout, need to replace with what get from repo submit
             root = test;
+            // root = $rootScope.repoObj;
+
             // console.log(root);
             root.x0 = height / 2;
             root.y0 = 0;
@@ -358,8 +356,8 @@ angular.module('directives')
     return {
       restrict: 'EA',
       scope: {},
-      require: "^treeTemplate",
-      template:'<button type="submit" class="btn btn-default" ng-click="drawTree()">Submit</button>',
+      // require: "^treeTemplate",
+      template:'<button class="btn btn-default" ng-click="drawTree()">Submit</button>',//removed ng-click="drawTree()"
       link: link
     };
   }]);

@@ -1,5 +1,8 @@
 angular.module('myApp', ['routes', 'directives', 'factories'])
   .run(function ($rootScope, $location, $route, $auth, authFactory) {
+
+    $rootScope.repoObj = null;
+
     $rootScope.$on('$routeChangeStart', function (event, next, current) {
 
       //reference for factory refactor
