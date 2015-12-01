@@ -21,4 +21,10 @@ app.controller('authController', ['$scope', '$auth', '$rootScope','$window', '$l
       console.log(response);
     });
   };
+
+  $scope.logout = function() {
+    $auth.logout();
+    delete $window.localStorage.currentUser;
+  };
+
 }]);

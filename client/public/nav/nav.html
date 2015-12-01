@@ -11,10 +11,10 @@
     </div>
 
     <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
+      <ul class="nav navbar-nav" ng-controller="authController">
         <li class="active"><a ng-href="#/tree">Tree <span class="sr-only">(current)</span></a></li>
         <li><a ng-href="#/login">Login</a></li>
-        <li><a ng-click="logout()">Logout</a></li>
+        <li><a ng-click="logout()" ng-href="go('/')">Logout</a></li>
       </ul>
     </div>
   </div>
