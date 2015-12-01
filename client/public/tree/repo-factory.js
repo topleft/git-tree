@@ -5,9 +5,9 @@ factories.factory( 'repoFactory', repoService );
 repoService.$inject = ['$http', '$window'];
 
   function repoService ($http, $window) {
-    
+
     var service = {getRepo: getRepo};
-    return service; 
+    return service;
 
       function getRepo (owner, repo){
         var token = JSON.parse($window.localStorage.currentUser).accessToken;
@@ -20,6 +20,6 @@ repoService.$inject = ['$http', '$window'];
                   token: token
                 }
         });
-      };
+      }
   }
 
