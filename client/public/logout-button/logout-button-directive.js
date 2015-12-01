@@ -2,12 +2,14 @@
 	angular.module('directives').directive('logoutButton', ['authFactory', '$location', function(authFactory, $location){
 		return {
 			restrict: 'E',
-			scope: {
-				logout: '='
-			},
-			template: '<button class="btn btn-warning btn-sm" ng-click="logout()">Logout</button>',
+			scope: {},
+			// scope: {
+			// 	logout: '='
+			// },
+			template: '<a ng-click="logout()">Logout</a>',
 			controller: function($scope, $location){
 				$scope.logout = function(){
+					console.log("working")
 						authFactory.logoutUser()
 						.then(function(){
 							$location.path("/login");
@@ -16,6 +18,24 @@
 			}
 		};
 	}]);
+
+	// angular.module('directives').directive('logoutButton', ['authFactory', '$location', function(authFactory, $location){
+	// 	return {
+	// 		restrict: 'E',
+	// 		scope: {},
+	// 		template: '<button class="btn btn-warning btn-sm" ng-click="logout()">Logout</button>',
+	// 		controller: function($scope, $location){
+	// 			$scope.logout = function(){
+	// 				console.log("working")
+	// 					authFactory.logoutUser()
+	// 					.then(function(){
+	// 						$location.path("/login");
+	// 					});
+	// 			};
+	// 		}
+	// 	};
+	// }]);
+
 
 	//attempt at refactor
 	// 	angular.module('directives').directive('logoutButton', [ '$scope', '$window', '$auth', '$location', 'authFactory', function($scope, $window, $auth, $location, authFactory){

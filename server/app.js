@@ -9,8 +9,6 @@ var bodyParser = require('body-parser');
 var swig = require('swig');
 var mongoose = require('mongoose');
 var http = require("http");
-// var hash = require('bcrypt-nodejs');
-// var User = require('./database').User;
 
 // *** routes *** //
 var mainRoutes = require('./routes/index');
@@ -34,13 +32,6 @@ mongoose.connect(config.MONGO_URI[app.settings.env],
   });
 
 
-// *** view engine *** //
-var swig = new swig.Swig();
-app.engine('html', swig.renderFile);
-app.set('view engine', 'html');
-
-
-
 // *** static directory *** //
 app.set('views', path.join(__dirname, 'views'));
 
@@ -52,7 +43,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../client/public')));
 
-app.use(express.static(path.join(__dirname, 'public')));
 
 // *** main routes *** //
 app.get('/', function(req, res, next) {

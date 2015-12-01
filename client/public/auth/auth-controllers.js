@@ -7,6 +7,7 @@ app.controller('authController', ['$scope', '$auth', '$rootScope','$window', '$l
 	// 	authFactory.authenticate();
 	//  };
 
+//setting user
 	$scope.authenticate = function(provider) {
 
     $auth.authenticate(provider)
@@ -14,7 +15,7 @@ app.controller('authController', ['$scope', '$auth', '$rootScope','$window', '$l
         $window.localStorage.currentUser = JSON.stringify(response.data.user);
         $rootScope.currentUser = JSON.parse(localStorage.getItem('currentUser'));
         console.log(response);
-        $location.path('/home');
+        $location.path('/');
       })
     .catch(function(response) {
       console.log(response);

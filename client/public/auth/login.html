@@ -1,24 +1,10 @@
-
 <div class="container">
-	<div class='row'>
-		<div class='col-md-4 col-md-offset-4'>
-			<h2>User Login</h2>
-			<div ng-show="error" class="alert alert-danger">{{errorMessage}}</div>
-			<form>
-				<br/>
-				<div class='form'>
-					<div class='form-group'>
-						<label for="email-input-register">Email address</label>
-    				<input type="email" class="form-control" id="email-input-login" placeholder="Email" ng-model="login.username" required>
-					</div>
-					<div class='form-group'>
-						<label for="password-input-login">Password</label>
-    				<input type="password" class="form-control" id="password-input-login" placeholder="Password" ng-model="login.password" required>
-					</div>
-					<button class='btn btn-primary' ng-click="login()" ng-disable='disable'>Login</button>
-				</div>
-			</form>
-			<button class="btn btn-block btn-success" ng-click="authenticate('github')">Sign in with GitHub</button>
-		</div>
-	</div>
+  <div class='row'>
+    <div class='col-md-4 col-md-offset-4'>
+      <h2>GitHub Login</h2>
+      <div ng-show="error" class="alert alert-danger">{{errorMessage}}</div>
+      <p>Sign in here to access your repositories.</p>
+      <button class="btn btn-block btn-default" ng-click="authenticate('github')">Sign in with GitHub</button>
+    </div>
+  </div>
 </div>

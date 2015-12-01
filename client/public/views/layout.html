@@ -3,7 +3,8 @@
     <meta charset="utf-8">
     <title>{{ title }}</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/main.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/yeti/bootstrap.min.css" rel="stylesheet" integrity="sha256-gJ9rCvTS5xodBImuaUYf1WfbdDKq54HCPz9wk8spvGs= sha512-weqt+X3kGDDAW9V32W7bWc6aSNCMGNQsdOpfJJz/qD/Yhp+kNeR+YyvvWojJ+afETB31L0C4eO0pcygxfTgjgw==" crossorigin="anonymous">
+    <link rel="stylesheet" href="../styles/css/main.css">
   </head>
   <body>
     <!-- nav bar -->
@@ -11,18 +12,15 @@
       <div nav-template ng-model="action"></div>
     </div>
 
-    <div class="container">
-      <div ng-view></div>
-    </div>
+    <div ng-view></div>
 
     <script type="text/javascript" src="//code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-route.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-animate.min.js"></script>
-
-  <script type="text/javascript" src="//cdn.jsdelivr.net/satellizer/0.12.5/satellizer.min.js"></script>
-
+    <script type="text/javascript" src="//cdn.jsdelivr.net/satellizer/0.12.5/satellizer.min.js"></script>
+<!--     // <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.10/d3.min.js"></script> -->
     <script type="text/javascript" src="../app/app.js"></script>
     <script type="text/javascript" src="../app/routes.js"></script>
     <script type="text/javascript" src="../app/factories.js"></script>
@@ -38,5 +36,7 @@
     <script type="text/javascript" src="../auth/auth-controllers.js"></script>
     <script type="text/javascript" src="../tree/tree-directive.js"></script>
     <script type="text/javascript" src="../tree/repo-factory.js"></script>
+     <script src="../tree/test.js"></script>
+    <script type="text/javascript" src="../tree/d3-directive.js"></script>
   </body>
 </html>
