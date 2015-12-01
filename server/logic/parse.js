@@ -19,8 +19,10 @@
         return item.type === 'blob';
       });
       var filesObj = files.reduce( function (obj, item) {
+        //make a copy
         var path = item.path.slice();
         path = path.split('/');
+        //file name is last one
         var file = path.pop();
         path = path.join('/');
         var child = {name: file, url: item.url};
@@ -35,10 +37,12 @@
     },
     findDeepestPaths: function (directories) {
       return directories.reduce( function (deep, dir, i, arr ) {
+        //if there is not one after
         if (!arr[i+1]) {
           deep.push(dir);
           return deep;
         }
+        //if the next path isn't one file deeper, then push
         if (arr[i+1].split('/').length - arr[i].split('/').length !== 1 ) {
           deep.push(dir);
           return deep;
@@ -59,20 +63,25 @@
         var splitPath = path.split('/');
         var nestedObj = splitPath.reduceRight(function ( base, name, i, arr ) {
             var j = i;
+            //if one last one, don't put another object in there (base is setting you up for next round)
             if ( Object.keys(base).length === 0 ) {
               base = undefined;
             }
             var nested = { 'name': '', children: [] };
             nested.name = name;
             if (i === 0) { i = 1 }
+            //joining path from beginning to wherever at - match to children objects
             var currentPath = arr.slice(0, i+1).join('/');
+            //if path is there, set files to children - currentPath is array of files
             if (childrenObj[currentPath]) {
               nested.children = childrenObj[currentPath];
               delete childrenObj[currentPath];
             }
+            //if base is undefined, done; otherwise, push children into base
             if (base !== undefined) { nested.children.push(base); }
             return nested;
         }, {});
+        //something is going on to avoid duplicates and it helps
         if (nestedObj.name !== '') { repoObject.children.push(nestedObj); }
       });
       return repoObject;
