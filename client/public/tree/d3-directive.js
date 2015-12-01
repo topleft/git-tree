@@ -121,7 +121,7 @@ angular.module('directives')
 
             nodeEnter.append("text")
                 .attr("x", function(d) { return d.children || d._children ? -10 : 10; })
-                .attr("dy", ".35em")
+                .attr("dy", "2em")
                 .attr("text-anchor", function(d) { return d.children || d._children ? "end" : "start"; })
                 .text(function(d) { return d.name; })
                 .style("fill-opacity", 1e-6);
@@ -132,7 +132,7 @@ angular.module('directives')
                 .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; });
 
             nodeUpdate.select("circle")
-                .attr("r", 4.5)
+                .attr("r", 7)
                 //new to set radius
                 // .attr("r", function (d) {
                 //   return isNaN(nodeRadius(d[spendField])) ? 2: nodeRadius(d[spendField]);
