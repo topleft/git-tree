@@ -1,5 +1,5 @@
-angular.module('directives').directive('treeTemplate', ['repoFactory', 'alertFactory',
-    function(repoFactory, alertFactory){
+angular.module('directives').directive('treeTemplate', ['repoFactory', 'alertFactory', 'd3Factory',
+    function(repoFactory, alertFactory, d3Factory){
       return {
         restrict: 'E',
         scope: {
@@ -16,9 +16,11 @@ angular.module('directives').directive('treeTemplate', ['repoFactory', 'alertFac
 
                 $rootScope.repoObj = JSON.stringify(data);
 
+                d3Factory.drawTree($rootScope.repoObj);
+
                 // $scope.callback();
 
-                console.log('Repo "'+$scope.repo.name+'": ', data);
+                // console.log('Repo "'+$scope.repo.name+'": ', data);
                 // console.log('Repo.children "'+$scope.repo.name+'": ', data.children);
                 console.log('rootscope repoObj: '+$rootScope.repoObj);
 
@@ -29,7 +31,7 @@ angular.module('directives').directive('treeTemplate', ['repoFactory', 'alertFac
                     $scope.language = data.language;
                     $scope.size = data.size;
 
-                    console.log('Repo details"'+$scope.repo.name+'": ', data);
+                    // console.log('Repo details"'+$scope.repo.name+'": ', data);
                   });
                 // make data appear on the screen
                 // make success message appear on the screen
