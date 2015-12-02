@@ -22,7 +22,7 @@ angular.module('directives').directive('treeTemplate', ['repoFactory', 'alertFac
 
                 // console.log('Repo "'+$scope.repo.name+'": ', data);
                 // console.log('Repo.children "'+$scope.repo.name+'": ', data.children);
-                console.log('rootscope repoObj: '+$rootScope.repoObj);
+                // console.log('rootscope repoObj: '+$rootScope.repoObj);
 
                 repoFactory.getRepoDetails($scope.repo.owner, $scope.repo.name)
                   .success(function (data) {
@@ -33,7 +33,7 @@ angular.module('directives').directive('treeTemplate', ['repoFactory', 'alertFac
                     $scope.url = data.url;
                     $scope.name = data.name;
 
-                    console.log('Repo details"'+$scope.repo.name+'": ', data);
+                    // console.log('Repo details"'+$scope.repo.name+'": ', data);
                   });
                 // make data appear on the screen
                 // make success message appear on the screen

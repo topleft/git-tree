@@ -29,7 +29,7 @@ function d3Service($document, $q, $rootScope) {
     function drawTree(data){
       d3().then(function(d3) {
 
-        var margin = {top: 20, right: 120, bottom: 20, left: 120},
+        var margin = {top: 0, right: 120, bottom: 20, left: 58},
             width = 1200 - margin.right - margin.left,
             height = 800 - margin.top - margin.bottom;
 
@@ -59,6 +59,7 @@ function d3Service($document, $q, $rootScope) {
 
           // console.log('d3factory data: '+data)
           root = JSON.parse(data);
+          // root = test2
 
           root.x0 = height / 2;
           root.y0 = 0;
@@ -66,6 +67,8 @@ function d3Service($document, $q, $rootScope) {
           function collapse(d) {
             if (d.children) {
               d._children = d.children;
+              // console.log('d._children: '+JSON.stringify(d._children))
+              // console.log('d.children: '+JSON.stringify(d.children))
               d._children.forEach(collapse);
               d.children = null;
             }

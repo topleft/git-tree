@@ -12,6 +12,10 @@ body {
   color: black;
   background-color: #f5f5f5;
   border-color: #dddddd;
+
+  &:hover {
+    background-color: #f0f0f0;
+  }
 }
 
 a {
@@ -32,9 +36,6 @@ a {
   }
 }
 
-.panel-heading:hover {
-  background-color: #f0f0f0;
-}
 .container {
   margin: 0;
 }
@@ -81,11 +82,12 @@ line {
 .node circle {
   fill: #fff;
   stroke: black;
-  stroke-width: 1.5px;
+  stroke-width: 2px;
 }
 
 .node text {
-  font: 10px sans-serif;
+  font: 12.5px sans-serif;
+  font-variant: small-caps;
 }
 
 path.link {
