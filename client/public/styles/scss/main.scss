@@ -14,8 +14,27 @@ body {
   border-color: #dddddd;
 }
 
+a {
+  color: black;
+}
+
+/* unvisited link */
+a:link {
+  text-decoration: none;
+}
+
+/* visited link */
+a:visited {
+  text-decoration: none;
+  color: black;
+  opacity: 0.5;
+}
+
+/* mouse over link */
 a:hover {
   text-decoration: none;
+  color: black;
+  opacity: 0.5;
 }
 
 .panel-body {

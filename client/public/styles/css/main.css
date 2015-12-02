@@ -7,8 +7,24 @@ body {
   background-color: #f5f5f5;
   border-color: #dddddd; }
 
-a:hover {
+a {
+  color: black; }
+
+/* unvisited link */
+a:link {
   text-decoration: none; }
+
+/* visited link */
+a:visited {
+  text-decoration: none;
+  color: black;
+  opacity: 0.5; }
+
+/* mouse over link */
+a:hover {
+  text-decoration: none;
+  color: black;
+  opacity: 0.5; }
 
 .panel-body p {
   font-style: italic; }
@@ -33,14 +49,12 @@ line {
   cursor: pointer; }
 
 .node circle {
-  fill: black;
-  stroke: black;
-  stroke-width: 2px; }
+  fill: #fff;
+  stroke: steelblue;
+  stroke-width: 1.5px; }
 
 .node text {
-  font: 12.5px;
-  font-variant: small-caps;
-}
+  font: 10px sans-serif; }
 
 path.link {
   fill: none;

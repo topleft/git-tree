@@ -65,7 +65,7 @@
           <span>repo stars:</span>
           <span id="stars">{{stars}}</span>
         </div>
-        <h2 ng-href='{{url}}'>{{name}}</h2>
+        <h2><a target="_blank" ng-href={{url}}>{{name}}</a></h2>
         <button class="btn btn-default">Expand</button>
         <button class="btn btn-default">Collapse</button>
         <button class="btn btn-default">Layer</button>
@@ -73,7 +73,6 @@
       <div id="repo-tree"></div>
     </div>
   </div>
-
 </div>
 
 
