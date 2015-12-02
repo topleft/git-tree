@@ -9,25 +9,17 @@ body {
 
 a {
   color: black; }
-
-/* unvisited link */
-a:link {
-  text-decoration: none; }
-
-/* visited link */
-a:visited {
-  text-decoration: none;
-  color: black;
-  opacity: 0.5; }
-
-/* mouse over link */
-a:hover {
-  text-decoration: none;
-  color: black;
-  opacity: 0.5; }
+  a:link, a:visited, a:hover {
+    text-decoration: none; }
+  a:visited, a:hover {
+    color: black;
+    opacity: 0.5; }
 
 .panel-body p {
   font-style: italic; }
+
+.panel-heading:hover {
+  background-color: #f0f0f0; }
 
 .container {
   margin: 0; }
@@ -41,6 +33,11 @@ li {
 .stats span:nth-child(0n+2) {
   font-variant: small-caps; }
 
+.tree {
+  width: 900px;
+  height: 800px;
+  overflow: scroll; }
+
 line {
   stroke: #000;
   stroke-width: 1.5px; }
@@ -50,7 +47,7 @@ line {
 
 .node circle {
   fill: #fff;
-  stroke: steelblue;
+  stroke: black;
   stroke-width: 1.5px; }
 
 .node text {
