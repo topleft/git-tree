@@ -40,7 +40,7 @@ angular.module('directives')
 
             // root = flare;
             //test is test.js file, calling in layout, need to replace with what get from repo submit
-            root = test;
+            root = test3;
             // root = $rootScope.repoObj;
 
             // console.log(root);
