@@ -1,4 +1,3 @@
-// var factories = angular.module('factories');
 
 factories.factory( 'repoFactory', repoService );
 
