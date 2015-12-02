@@ -7,13 +7,13 @@ authService.$inject = ['$rootScope','$window', '$auth', '$location', '$rootScope
 	function authService ($rootScope, $window, $auth, $location) {
 
 		var service = {
-			isAuthenticated: isAuthenticated,
+			isUserAuthenticated: isUserAuthenticated,
 			authenticateUser: authenticateUser,
 			logoutUser: logoutUser
 		};
 		return service;
 
-		function isAuthenticated(){
+		function isUserAuthenticated(){
 			return $auth.isAuthenticated();
 		}
 

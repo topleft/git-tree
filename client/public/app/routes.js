@@ -8,7 +8,6 @@ app.config(['$routeProvider', function($routeProvider){
 	})
 	.when('/login', {
 		templateUrl: '../auth/login.html',
-		controller: 'authController',
 		access: {restricted: false}
 	})
 	.when('/tree', {

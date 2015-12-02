@@ -5,7 +5,7 @@ angular.module('myApp', ['routes', 'directives', 'factories'])
 
     $rootScope.$on('$routeChangeStart', function (event, next, current) {
 
-      if (next.access.restricted && !authFactory.isAuthenticated()) {
+      if (next.access.restricted && !authFactory.isUserAuthenticated()) {
         $location.path('/login');
         $route.reload();
       }
