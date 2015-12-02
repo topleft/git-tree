@@ -54,6 +54,7 @@ var factories = angular.module('factories', []);
 
 	factories.factory('d3', [])
   .factory('d3Service', ['$document', '$q', '$rootScope', function($document, $q, $rootScope) {
+    //ADD ROOTSCOPE.REPOOBJ HERE!!!???
     var d = $q.defer();
     function onScriptLoad() {
       // Load client in the browser
