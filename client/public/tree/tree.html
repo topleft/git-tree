@@ -18,7 +18,7 @@
                 <input type="text" class="form-control" ng-model='repo.name' id="repo" placeholder="Enter GitHub repo name..." required>
               </div>
               <div class="form-group">
-                <button class="btn btn-default" ng-click="">Submit</button>
+                <button class="btn btn-default">Submit</button>
               </div>
             </form>
           </div>
@@ -49,22 +49,25 @@
     </div>
 
     <div class="col-sm-10 col-md-9">
-      <div class="stats well row">
-        <div class="col-sm-4 stats">
+      <div class="stats row">
+        <div class="col-sm-4 stats well">
           <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
           <span>dominant language:</span>
           <span id="language">{{language}}</span>&nbsp;&nbsp;&nbsp;
         </div>
-        <div class="col-sm-4 stats">
+        <div class="col-sm-4 stats well">
           <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
           <span>files:</span>
           <span id="files">{{size}}</span>&nbsp;&nbsp;&nbsp;
         </div>
-        <div class="col-sm-4 stats">
+        <div class="col-sm-4 stats well">
           <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
           <span>repo stars:</span>
           <span id="stars">{{stars}}</span>
         </div>
+        <button class="btn btn-default">Expand</button>
+        <button class="btn btn-default">Collapse</button>
+        <button class="btn btn-default">Layer</button>
       </div>
       <div id="repo-tree"></div>
     </div>
