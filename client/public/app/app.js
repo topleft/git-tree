@@ -1,14 +1,11 @@
 angular.module('myApp', ['routes', 'directives', 'factories'])
   .run(function ($rootScope, $location, $route, $auth, authFactory) {
+
+    $rootScope.repoObj = null;
+
     $rootScope.$on('$routeChangeStart', function (event, next, current) {
 
-      //reference for factory refactor
-      // if (next.access.restricted && authFactory.isLoggedIn() === false) {
-      //   $location.path('/login');
-      //   $route.reload();
-      // }
-
-      if (next.access.restricted && !$auth.isAuthenticated()) {
+      if (next.access.restricted && !authFactory.isUserAuthenticated()) {
         $location.path('/login');
         $route.reload();
       }
