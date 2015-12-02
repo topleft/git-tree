@@ -4,15 +4,12 @@ angular.module('directives')
       restrict: 'A',
       templateUrl: 'nav/nav.html',
       controller: function($scope, authFactory){
-
-        $scope.isAuthenticated = function(){
+        $scope.authenticated = function(){
           authFactory.isUserAuthenticated();
         };
-
         $scope.authenticate = function(provider) {
           authFactory.authenticateUser(provider);
         };
-
         $scope.logout = function(){
           authFactory.logoutUser();
         };

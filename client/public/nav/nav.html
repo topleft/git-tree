@@ -12,9 +12,9 @@
 
     <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li ng-if="isAuthenticated()" class="active"><a ng-href="#/tree">Tree <span class="sr-only">(current)</span></a></li>
-        <li ng-if="!isAuthenticated()"><a ng-href="#/login">Login</a></li>
-        <li ng-if="!isAuthenticated()"><a ng-click="logout()">Logout</a></li>
+        <li ng-if="!authenticated()" class="active"><a ng-href="#/tree">Tree <span class="sr-only">(current)</span></a></li>
+        <li ng-if="!authenticated()"><a ng-href="#/login">Login</a></li>
+        <li ng-if="!authenticated()"><a ng-click="logout()">Logout</a></li>
       </ul>
     </div>
   </div>

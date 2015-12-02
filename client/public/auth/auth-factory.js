@@ -7,15 +7,11 @@ authService.$inject = ['$rootScope','$window', '$auth', '$location', '$rootScope
 	function authService ($rootScope, $window, $auth, $location) {
 
 		var service = {
-			isUserAuthenticated: isUserAuthenticated,
 			authenticateUser: authenticateUser,
+			isUserAuthenticated: isUserAuthenticated,
 			logoutUser: logoutUser
 		};
 		return service;
-
-		function isUserAuthenticated(){
-			return $auth.isAuthenticated();
-		}
 
 		function authenticateUser(provider){
 	    $auth.authenticate(provider)
@@ -29,6 +25,11 @@ authService.$inject = ['$rootScope','$window', '$auth', '$location', '$rootScope
 					console.log(response);
 		    });
 			}
+
+		function isUserAuthenticated(){
+			// console.log($auth.isAuthenticated())
+			return $auth.isAuthenticated();
+		}
 
 		function logoutUser(){
 	    $auth.logout();
