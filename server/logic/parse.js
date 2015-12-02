@@ -56,6 +56,7 @@
       }
 
       names.forEach( function (path) {
+
         var splitPath = path.split('/');
         var nestedObj = splitPath.reduceRight(function ( base, name, i, arr ) {
             var j = i;
@@ -73,7 +74,7 @@
             if (base !== undefined) { nested.children.push(base); }
             return nested;
         }, {});
-        if (nestedObj.name !== '') { repoObject.children.push(nestedObj); }
+        // if (nestedObj.name !== '') { repoObject.children.push(nestedObj); }
       });
       return repoObject;
     }
