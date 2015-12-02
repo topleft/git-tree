@@ -82,12 +82,8 @@
             if (base !== undefined) { nested.children.push(base); }
             return nested;
         }, {});
-<<<<<<< HEAD
-        // if (nestedObj.name !== '') { repoObject.children.push(nestedObj); }
-=======
         //something is going on to avoid duplicates and it helps
         if (nestedObj.name !== '') { repoObject.children.push(nestedObj); }
->>>>>>> 8b9d9e06e20e0daa352a0484e38c34b8bc684eba
       });
       return repoObject;
     }
