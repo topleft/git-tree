@@ -56,4 +56,3 @@ var test = {
     {"name": "gulpfile.js"}
   ]
 };
-

@@ -7,20 +7,15 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Open Tree</a>
+      <a class="navbar-brand" href="#/">Open Tree</a>
     </div>
 
     <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a ng-href="#/tree">Tree <span class="sr-only">(current)</span></a></li>
-        <li><a ng-href="#/login">Login</a></li>
-        <li><a ng-click="logout()">Logout</a></li>
+        <li ng-if="!authenticated()" class="active"><a ng-href="#/tree">Tree <span class="sr-only">(current)</span></a></li>
+        <li ng-if="!authenticated()"><a ng-href="#/login">Login</a></li>
+        <li ng-if="!authenticated()"><a ng-click="logout()">Logout</a></li>
       </ul>
     </div>
   </div>
 </nav>
-
-
-<!-- <logout-button></logout-button>
- -->
-<!-- <logout-button logout='logout'></logout-button> -->

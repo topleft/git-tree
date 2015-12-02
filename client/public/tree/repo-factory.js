@@ -1,4 +1,3 @@
-var factories = angular.module('factories');
 
 factories.factory( 'repoFactory', repoService );
 
@@ -7,7 +6,7 @@ repoService.$inject = ['$http', '$window'];
   function repoService ($http, $window) {
 
     var service = {
-      getRepo: getRepo, 
+      getRepo: getRepo,
       getRepoDetails: getRepoDetails
     };
     return service;
@@ -21,7 +20,7 @@ repoService.$inject = ['$http', '$window'];
                   user: owner,
                   repo: repo,
                   token: token
-                }
+                },
         });
       }
 

@@ -1,16 +1,15 @@
-<html ng-app='myApp' ng-controller='myController'>
+<html ng-app="myApp" ng-controller="myController">
   <head>
     <meta charset="utf-8">
     <title>{{ title }}</title>
+    <link rel="icon" type="image" href="../img/tree_favicon.ico">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/yeti/bootstrap.min.css" rel="stylesheet" integrity="sha256-gJ9rCvTS5xodBImuaUYf1WfbdDKq54HCPz9wk8spvGs= sha512-weqt+X3kGDDAW9V32W7bWc6aSNCMGNQsdOpfJJz/qD/Yhp+kNeR+YyvvWojJ+afETB31L0C4eO0pcygxfTgjgw==" crossorigin="anonymous">
     <link rel="stylesheet" href="../styles/css/main.css">
   </head>
   <body>
     <!-- nav bar -->
-    <div>
-      <div nav-template ng-model="action"></div>
-    </div>
+    <div nav-template ng-model="action"></div>
 
     <div ng-view></div>
 
@@ -20,23 +19,19 @@
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-route.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-animate.min.js"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/satellizer/0.12.5/satellizer.min.js"></script>
-<!--     // <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.10/d3.min.js"></script> -->
     <script type="text/javascript" src="../app/app.js"></script>
     <script type="text/javascript" src="../app/routes.js"></script>
-    <script type="text/javascript" src="../app/factories.js"></script>
     <script type="text/javascript" src="../app/controllers.js"></script>
+    <script type="text/javascript" src="../app/factories.js"></script>
     <script type="text/javascript" src="../app/directives.js"></script>
-    <script type="text/javascript" src="../form/form-directive.js"></script>
+    <script type="text/javascript" src="../auth/auth-factory.js"></script>
     <script type="text/javascript" src="../nav/nav-directive.js"></script>
-    <script type="text/javascript" src="../output/output-directive.js"></script>
     <script type="text/javascript" src="../alert/alert-factory.js"></script>
     <script type="text/javascript" src="../alert/alert-directive.js"></script>
-    <script type="text/javascript" src="../logout-button/logout-button-directive.js"></script>
-    <script type="text/javascript" src="../auth/auth-factory.js"></script>
-    <script type="text/javascript" src="../auth/auth-controllers.js"></script>
     <script type="text/javascript" src="../tree/tree-directive.js"></script>
     <script type="text/javascript" src="../tree/repo-factory.js"></script>
-     <script src="../tree/test.js"></script>
+    <script type="text/javascript" src="../tree/d3-factory.js"></script>
+    <script src="../tree/test.js"></script>
     <script type="text/javascript" src="../tree/d3-directive.js"></script>
   </body>
 </html>

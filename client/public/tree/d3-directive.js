@@ -1,11 +1,8 @@
 angular.module('directives')
   .directive('tree', ['d3Service', function(d3Service) {
-    return {
-      restrict: 'EA',
-      scope: {},
-      link: function(scope, element, attrs, controller) {
+    var link = function($scope, element, attrs, controller, $rootScope) {
+      $scope.drawTree = function(){
         d3Service.d3().then(function(d3) {
-
 
           var margin = {top: 20, right: 120, bottom: 20, left: 120},
               width = 960 - margin.right - margin.left,
@@ -44,6 +41,9 @@ angular.module('directives')
             // root = flare;
             //test is test.js file, calling in layout, need to replace with what get from repo submit
             root = test;
+            // root = $rootScope.repoObj;
+
+            // console.log(root);
             root.x0 = height / 2;
             root.y0 = 0;
 
@@ -121,7 +121,7 @@ angular.module('directives')
 
             nodeEnter.append("text")
                 .attr("x", function(d) { return d.children || d._children ? -10 : 10; })
-                .attr("dy", ".35em")
+                .attr("dy", "2em")
                 .attr("text-anchor", function(d) { return d.children || d._children ? "end" : "start"; })
                 .text(function(d) { return d.name; })
                 .style("fill-opacity", 1e-6);
@@ -132,7 +132,7 @@ angular.module('directives')
                 .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; });
 
             nodeUpdate.select("circle")
-                .attr("r", 4.5)
+                .attr("r", 7)
                 //new to set radius
                 // .attr("r", function (d) {
                 //   return isNaN(nodeRadius(d[spendField])) ? 2: nodeRadius(d[spendField]);
@@ -172,14 +172,14 @@ angular.module('directives')
                   return diagonal({source: o, target: o});
                 })
                 .style("stroke", function (d, i) {
-                    if (d.source.depth == 0) {
+                    if (d.source.depth === 0) {
                         rootCounter++;
                         return (d.source.children[rootCounter - 1].linkColor);
                     }
                     else {
                         return (d.source) ? d.source.linkColor : d.linkColor;
                     }
-                })
+                });
                 // .style("stroke-width", function (d, i) {
                 //   return isNaN(nodeRadius(d.target[spendField])) ? 4: nodeRadius(d.target[spendField])*2;
                 // })
@@ -351,5 +351,13 @@ angular.module('directives')
                   .attr("width", overlayBox.width);
           }
         });
-      }};
-    }]);
+      };
+    };
+    return {
+      restrict: 'EA',
+      scope: {},
+      // require: "^treeTemplate",
+      template:'<button class="btn btn-default" ng-click="drawTree()">Submit</button>',//removed ng-click="drawTree()"
+      link: link
+    };
+  }]);
