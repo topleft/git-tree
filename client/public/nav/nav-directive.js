@@ -12,6 +12,10 @@ angular.module('directives')
         $scope.authenticate = function(provider) {
           authFactory.authenticateUser(provider);
         };
+
+        $scope.logout = function(){
+          authFactory.logoutUser();
+        };
       }
     };
   }]);
