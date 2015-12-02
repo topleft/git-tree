@@ -1,8 +1,9 @@
 
 factories.factory('d3', [])
   .factory('d3Service', ['$document', '$q', '$rootScope', function($document, $q, $rootScope) {
-    //ADD ROOTSCOPE.REPOOBJ HERE!!!???
+
     var d = $q.defer();
+
     function onScriptLoad() {
       // Load client in the browser
       $rootScope.$apply(function() { d.resolve(window.d3); });
@@ -16,15 +17,17 @@ factories.factory('d3', [])
     scriptTag.src = '//cdnjs.cloudflare.com/ajax/libs/d3/3.5.10/d3.min.js';
     scriptTag.onreadystatechange = function () {
     if (this.readyState === 'complete') { onScriptLoad(); }
-  };
-  scriptTag.onload = onScriptLoad;
+    };
+    scriptTag.onload = onScriptLoad;
 
-  var s = $document[0].getElementsByTagName('body')[0];
-  s.appendChild(scriptTag);
+    var s = $document[0].getElementsByTagName('body')[0];
+    s.appendChild(scriptTag);
 
-  return {
-    d3: function() { return d.promise; }
-  };
-}]);
+    return {
+      d3: function() {
+        return d.promise;
+      }
+    };
+  }]);
 
 
