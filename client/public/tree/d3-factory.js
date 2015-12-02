@@ -30,7 +30,7 @@ function d3Service($document, $q, $rootScope) {
       d3().then(function(d3) {
 
         var margin = {top: 20, right: 120, bottom: 20, left: 120},
-            width = 960 - margin.right - margin.left,
+            width = 1200 - margin.right - margin.left,
             height = 800 - margin.top - margin.bottom;
 
         var i = 0,
@@ -57,20 +57,9 @@ function d3Service($document, $q, $rootScope) {
           .append("g")
           .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-        // var hi = JSON.stringify(test);
-        // var another = JSON.parse(test);
-        // d3.json(test, function(error, flare) {
-        //   console.log('Flare: ',flare);
-        //   if (error) throw error;
-
-          // root = flare;
-          //test is test.js file, calling in layout, need to replace with what get from repo submit
-          console.log('d3factory data: '+data)
+          // console.log('d3factory data: '+data)
           root = JSON.parse(data);
 
-          // root = $rootScope.repoObj;
-
-          // console.log(root);
           root.x0 = height / 2;
           root.y0 = 0;
 
