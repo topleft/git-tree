@@ -30,8 +30,10 @@ angular.module('directives').directive('treeTemplate', ['repoFactory', 'alertFac
                     $scope.stars = data.stars;
                     $scope.language = data.language;
                     $scope.size = data.size;
+                    $scope.url = data.url;
+                    $scope.name = data.name;
 
-                    // console.log('Repo details"'+$scope.repo.name+'": ', data);
+                    console.log('Repo details"'+$scope.repo.name+'": ', data);
                   });
                 // make data appear on the screen
                 // make success message appear on the screen
