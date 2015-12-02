@@ -13,7 +13,7 @@ factories.factory('d3', [])
     var scriptTag = $document[0].createElement('script');
     scriptTag.type = 'text/javascript';
     scriptTag.async = true;
-    scriptTag.src = '../vendor/bower_components/d3/d3.js';
+    scriptTag.src = '//cdnjs.cloudflare.com/ajax/libs/d3/3.5.10/d3.min.js';
     scriptTag.onreadystatechange = function () {
     if (this.readyState === 'complete') { onScriptLoad(); }
   };
