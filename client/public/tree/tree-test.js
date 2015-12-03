@@ -38,18 +38,24 @@ function d3Service($document, $q, $rootScope) {
   //   this.update(repo);
   // }
 
-  //old way
-  DrawTree.prototype.expandAll = function() {
-    expand(this.root);
-    this.update(this.root);
-  };
+  function expand(d){
+      var children = (d.children)?d.children:d._children;
+      if (d._children) {
+          d.children = d._children;
+          d._children = null;
+      }
+      if(children)
+        children.forEach(expand);
+  }
+  //took out of drawTree because not using in there, only being called in collapse all
+  function collapse(d) {
+    if (d.children) {
+      d._children = d.children;
+      d._children.forEach(collapse);
+      d.children = null;
+    }
+  }
 
-  //old way
-  DrawTree.prototype.collapseAll = function(){
-    this.root.children.forEach(collapse);
-    collapse(this.root);
-    this.update(this.root);
-  };
 
 var margin = {top: 20, right: 120, bottom: 20, left: 120},
     width = 960 - margin.right - margin.left,
@@ -72,16 +78,25 @@ function DrawTree(repo){
       .append("g")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-  this.root = JSON.parse(repo);
-  console.log('this.root in drawTree: '+this.root)
-  console.log('repo in drawTree: '+repo)
-  this.root.x0 = height / 2;
-  this.root.y0 = 0;
+  var root = JSON.parse(repo);
+  root.x0 = height / 2;
+  root.y0 = 0;
 
-  this.update = function(source) {
+  this.collapseAll = function(){
+    root.children.forEach(collapse);
+    collapse(root);
+    update(root);
+  };
+
+  this.expandAll = function() {
+    expand(root);
+    update(root);
+  };
+
+  function update(source) {
 
     // Compute the new tree layout.
-    var nodes = tree.nodes(this.root).reverse(),
+    var nodes = tree.nodes(root).reverse(),
         links = tree.links(nodes);
 
     // Normalize for fixed-depth.
@@ -165,25 +180,7 @@ function DrawTree(repo){
       d.x0 = d.x;
       d.y0 = d.y;
     });
-  };//end update
-
-  this.expand = function(d){
-      var children = (d.children)?d.children:d._children;
-      if (d._children) {
-          d.children = d._children;
-          d._children = null;
-      }
-      if(children)
-        children.forEach(expand);
-  };
-  //took out of drawTree because not using in there, only being called in collapse all
-  this.collapse = function(d) {
-    if (d.children) {
-      d._children = d.children;
-      d._children.forEach(collapse);
-      d.children = null;
-    }
-  };
+  }//end update
 
   // Toggle children on click.
   function click(d) {
@@ -194,7 +191,7 @@ function DrawTree(repo){
       d.children = d._children;
       d._children = null;
     }
-    this.update(d);
+    update(d);
   }
 
   function mouseover(d) {
@@ -211,16 +208,14 @@ function DrawTree(repo){
       d3.select(this).select("text.hover").remove();
   }
 
-
-  this.update(this.root);
+  update(root);
 
   // d3.select(self.frameElement).style("height", "800px");
-}
+
+}//end DrawTree
 
   var service = {
     DrawTree: DrawTree
-    // expandAll: expandAll,
-    // collapseAll: collapseAll
   };
 
   return service;
