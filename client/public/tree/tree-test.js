@@ -4,61 +4,61 @@ d3Service.$inject =  ['$document', '$q', '$rootScope'];
 
 function d3Service($document, $q, $rootScope) {
 
-  function expand(d){
-      var children = (d.children)?d.children:d._children;
-      if (d._children) {
-          d.children = d._children;
-          d._children = null;
-      }
-      if(children)
-        children.forEach(expand);
-  }
-  //took out of drawTree because not using in there, only being called in collapse all
-  function collapse(d) {
-    if (d.children) {
-      d._children = d.children;
-      d._children.forEach(collapse);
-      d.children = null;
-    }
-  }
 
-  //trial way with passing in repo, but same as root?
-  function expandAll(repo){
-    // JSON.parse(repo)
-    console.log('expand')
-    expand(repo);
-    update(repo);
-  }
-  //trial way with passing in repo, but same as root?
-  function collapseAll(repo){
-    // JSON.parse(repo)
-    repo.children.forEach(collapse);
-    collapse(repo);
-    update(repo);
-  }
+  // DrawTree.prototype.expand = function(d){
+  //     var children = (d.children)?d.children:d._children;
+  //     if (d._children) {
+  //         d.children = d._children;
+  //         d._children = null;
+  //     }
+  //     if(children)
+  //       children.forEach(expand);
+  // };
+  // //took out of drawTree because not using in there, only being called in collapse all
+  // DrawTree.prototype.collapse = function(d) {
+  //   if (d.children) {
+  //     d._children = d.children;
+  //     d._children.forEach(collapse);
+  //     d.children = null;
+  //   }
+  // };
 
-  //old way
-  function expandAll(){
-    expand(root);
-    update(root);
-  }
+  // //trial way with passing in repo, but same as root?
+  // function expandAll(repo){
+  //   // JSON.parse(repo)
+  //   console.log('expand')
+  //   expand(repo);
+  //   this.update(repo);
+  // }
+  // //trial way with passing in repo, but same as root?
+  // function collapseAll(repo){
+  //   // JSON.parse(repo)
+  //   repo.children.forEach(collapse);
+  //   collapse(repo);
+  //   this.update(repo);
+  // }
 
   //old way
-  function collapseAll(){
-    root.children.forEach(collapse);
-    collapse(root);
-    update(root);
-  }
+  DrawTree.prototype.expandAll = function() {
+    expand(this.root);
+    this.update(this.root);
+  };
+
+  //old way
+  DrawTree.prototype.collapseAll = function(){
+    this.root.children.forEach(collapse);
+    collapse(this.root);
+    this.update(this.root);
+  };
 
 var margin = {top: 20, right: 120, bottom: 20, left: 120},
     width = 960 - margin.right - margin.left,
     height = 800 - margin.top - margin.bottom;
 
-function drawTree(repo){
+function DrawTree(repo){
 
   var i = 0,
-      duration = 750,
-      root;
+      duration = 750;
 
   var tree = d3.layout.tree()
       .size([height, width]);
@@ -72,15 +72,16 @@ function drawTree(repo){
       .append("g")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-  root = JSON.parse(repo);
-  console.log('root in drawTree: '+root)
-  root.x0 = height / 2;
-  root.y0 = 0;
+  this.root = JSON.parse(repo);
+  console.log('this.root in drawTree: '+this.root)
+  console.log('repo in drawTree: '+repo)
+  this.root.x0 = height / 2;
+  this.root.y0 = 0;
 
-  function update(source) {
+  this.update = function(source) {
 
     // Compute the new tree layout.
-    var nodes = tree.nodes(root).reverse(),
+    var nodes = tree.nodes(this.root).reverse(),
         links = tree.links(nodes);
 
     // Normalize for fixed-depth.
@@ -164,7 +165,25 @@ function drawTree(repo){
       d.x0 = d.x;
       d.y0 = d.y;
     });
-  }//end update
+  };//end update
+
+  this.expand = function(d){
+      var children = (d.children)?d.children:d._children;
+      if (d._children) {
+          d.children = d._children;
+          d._children = null;
+      }
+      if(children)
+        children.forEach(expand);
+  };
+  //took out of drawTree because not using in there, only being called in collapse all
+  this.collapse = function(d) {
+    if (d.children) {
+      d._children = d.children;
+      d._children.forEach(collapse);
+      d.children = null;
+    }
+  };
 
   // Toggle children on click.
   function click(d) {
@@ -175,8 +194,7 @@ function drawTree(repo){
       d.children = d._children;
       d._children = null;
     }
-    console.log(d)
-    update(d);
+    this.update(d);
   }
 
   function mouseover(d) {
@@ -194,14 +212,15 @@ function drawTree(repo){
   }
 
 
-  update(root);
+  this.update(this.root);
 
   // d3.select(self.frameElement).style("height", "800px");
 }
+
   var service = {
-    drawTree: drawTree,
-    expandAll: expandAll,
-    collapseAll: collapseAll
+    DrawTree: DrawTree
+    // expandAll: expandAll,
+    // collapseAll: collapseAll
   };
 
   return service;
