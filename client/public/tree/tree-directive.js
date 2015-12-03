@@ -16,7 +16,12 @@ angular.module('directives').directive('treeTemplate', ['repoFactory', 'alertFac
 
                 $rootScope.repoObj = JSON.stringify(data);
 
-                d3Factory.drawTree($rootScope.repoObj);
+                var toggle = d3Factory.drawTree($rootScope.repoObj);
+                console.log('toggle: '+toggle)
+
+                // console.log(toggle.collapse)
+                $scope.expandAll = toggle.expandAll;
+                $scope.collapseAll = toggle.collapseAll;
 
                 // $scope.callback();
 

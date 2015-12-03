@@ -10,7 +10,9 @@ function d3Service($document, $q, $rootScope) {
     // *** async load of d3 library *** //
     function onScriptLoad() {
       // Load client in the browser
-      $rootScope.$apply(function() { d.resolve(window.d3); });
+      $rootScope.$apply(function() {
+        d.resolve(window.d3);
+      });
     }
     // Create a script tag with d3 as the source and call onScriptLoad callback when it has been loaded
     var scriptTag = $document[0].createElement('script');
@@ -18,12 +20,26 @@ function d3Service($document, $q, $rootScope) {
     scriptTag.async = true;
     scriptTag.src = '//cdnjs.cloudflare.com/ajax/libs/d3/3.5.10/d3.min.js';
     scriptTag.onreadystatechange = function () {
-    if (this.readyState === 'complete') { onScriptLoad(); }
+      if (this.readyState === 'complete') {
+        onScriptLoad();
+      }
     };
     scriptTag.onload = onScriptLoad;
 
     var s = $document[0].getElementsByTagName('body')[0];
     s.appendChild(scriptTag);
+
+
+    //global toggle of tree
+
+    // function ToggleTree() {
+    //   console.log('toggle')
+    //   this.expand = null;
+    //   this.collapse = null;
+    //   return { expand: this.expand,
+    //            collapse: this.collapse
+    //          };
+    // }
 
     // *** creates tree *** //
     function drawTree(data){
@@ -44,9 +60,9 @@ function d3Service($document, $q, $rootScope) {
         var tree = d3.layout.tree()
             .size([height, width]);
 
-        var circles={};
-        var paths={};
-        var labels={};
+        var circles = {};
+        var paths = {};
+        var labels = {};
 
         var diagonal = d3.svg.diagonal()
             .projection(function(d) { return [d.y, d.x]; });
@@ -59,7 +75,7 @@ function d3Service($document, $q, $rootScope) {
 
           // console.log('d3factory data: '+data)
           root = JSON.parse(data);
-          // root = test2
+          // root = test;
 
           root.x0 = height / 2;
           root.y0 = 0;
@@ -180,7 +196,7 @@ function d3Service($document, $q, $rootScope) {
           var link = svg.selectAll("path.link")
               .data(links, function(d) { return d.target.id; });
 
-        var rootCounter = 0;
+          var rootCounter = 0;
 
           // Enter any new links at the parent's previous position.
           link.enter().insert("path", "g")
@@ -236,7 +252,7 @@ function d3Service($document, $q, $rootScope) {
             d.x0 = d.x;
             d.y0 = d.y;
           });
-        }
+        }//end update function
 
         // function node_onMouseOver(d) {
 
@@ -282,6 +298,41 @@ function d3Service($document, $q, $rootScope) {
           update(d);
         }
 
+        function expand(d){
+          var children = (d.children)?d.children:d._children;
+          if (d._children) {
+              d.children = d._children;
+              d._children = null;
+          }
+          if(children)
+            children.forEach(expand);
+        }
+
+        // ToggleTree.prototype.expandAll = function() {
+        //   console.log('expand')
+        //   expand(root);
+        //   this.expand = update(root);
+
+        // };
+        function expandAll(){
+          console.log('expandAll from d3 factory')
+          expand(root);
+          update(root);
+        }
+
+        // ToggleTree.prototype.collapseAll = function() {
+        //   console.log('collapse')
+        //   root.children.forEach(collapse);
+        //   collapse(root);
+        //   this.collapse = update(root);
+        // };
+        function collapseAll(){
+            console.log('collapseAll from d3 factory')
+            root.children.forEach(collapse);
+            collapse(root);
+            update(root);
+        }
+
 
         // Add the clipping path
         svg.append("svg:clipPath").attr("id", "clipper")
@@ -299,41 +350,38 @@ function d3Service($document, $q, $rootScope) {
         //     .attr("clip-path", "url(#clipper)");
 
         function setupMouseEvents(){
-            ui.nodeGroup.on('mouseover', function(d, i)
-            {
-                d3.select(this).select("circle").classed("hover", true);
-            })
-                .on('mouseout', function(d, i)
-                {
-                    d3.select(this).select("circle").classed("hover", false);
-                })
-                .on('hover', function(nd, i)
-                {
-                    // Walk parent chain
-                    var ancestors = [];
-                    var parent = nd;
-                    while (!_.isUndefined(parent)) {
-                        ancestors.push(parent);
-                        parent = parent.parent;
-                    }
+          ui.nodeGroup.on('mouseover', function(d, i){
+              d3.select(this).select("circle").classed("hover", true);
+          })
+              .on('mouseout', function(d, i){
+                  d3.select(this).select("circle").classed("hover", false);
+              })
+              .on('hover', function(nd, i){
+                  // Walk parent chain
+                  var ancestors = [];
+                  var parent = nd;
+                  while (!_.isUndefined(parent)) {
+                      ancestors.push(parent);
+                      parent = parent.parent;
+                  }
 
-                    // Get the matched links
-                    var matchedLinks = [];
-                    ui.linkGroup.selectAll('path.link')
-                        .filter(function(d, i)
-                        {
-                            return _.any(ancestors, function(p)
-                            {
-                                return p === d.target;
-                            });
-                        })
-                        .each(function(d)
-                        {
-                            matchedLinks.push(d);
-                        });
+                  // Get the matched links
+                  var matchedLinks = [];
+                  ui.linkGroup.selectAll('path.link')
+                      .filter(function(d, i)
+                      {
+                          return _.any(ancestors, function(p)
+                          {
+                              return p === d.target;
+                          });
+                      })
+                      .each(function(d)
+                      {
+                          matchedLinks.push(d);
+                      });
 
-                    animateParentChain(matchedLinks);
-                });
+                  animateParentChain(matchedLinks);
+              });
         }
 
         function animateParentChain(links){
@@ -367,9 +415,35 @@ function d3Service($document, $q, $rootScope) {
                 .attr("x", overlayBox.x)
                 .attr("width", overlayBox.width);
         }
+        //get root expand update collapse
+        // return {
+        //   root: root,
+        //   expand: expand
+        // };
       });
-    }
+      // return  {
+      //   expandAll: function(){
 
+      //             console.log('expand')
+      //             // console.log(root)
+      //             expand(root);
+      //             update(root);
+      //   },
+      //   collapseAll: function(){
+      //     console.log('collapse')
+      //     root.children.forEach(collapse);
+      //     collapse(root);
+      //     update(root);
+      //   }
+      // };
+      // console.log(expandAll)
+      return {
+        expand: expandAll,
+        collapse: collapseAll
+      };
+    }//end draw tree function
+
+    // console.log(drawTree())
     function d3(){
       return d.promise;
     }
