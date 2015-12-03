@@ -13,25 +13,6 @@ chai.use(chaiHttp);
 
 describe('tree parser', function () {
 
-
-  describe('findDeepestPaths', function () {
-
-    it('should find the deepest paths in a list of paths', function () {       
-      var expected = data.deepestPaths.one;
-      var result = parse.findDeepestPaths(data.paths.one);
-      expect(result).to.eql(expected);
-    });
-
-    it('should find the deepest paths without any duplicate roots', function () {
-      var expected = data.deepestPaths.three;
-      var result = parse.findDeepestPaths(data.paths.three);
-      expect(result).to.eql(expected);
-    });
-
-  });
-
-
-
   describe('createChildren', function () {
 
     it('should create an object with paths as keys(strings) and an array of children files (objects)', function () {

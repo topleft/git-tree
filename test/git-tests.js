@@ -41,7 +41,7 @@ describe('git API routes', function () {
 
   describe('git all repos for user', function() {
 
-    it('should return a list of git repos', function(done){
+    xit('should return a list of git repos', function(done){
       chai.request(server)
         .post('/github/user/repos')
         .send({
@@ -57,7 +57,7 @@ describe('git API routes', function () {
       });
     });
 
-    it('should return a list of git repos', function(done){
+    xit('should return a list of git repos', function(done){
       chai.request(server)
         .post('/github/user/repos')
         .send({
