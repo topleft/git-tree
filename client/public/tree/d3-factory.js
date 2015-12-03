@@ -5,46 +5,8 @@ d3Service.$inject =  ['$document', '$q', '$rootScope'];
 
 function d3Service($document, $q, $rootScope) {
 
-    var d = $q.defer();
-
-    // *** async load of d3 library *** //
-    function onScriptLoad() {
-      // Load client in the browser
-      $rootScope.$apply(function() {
-        d.resolve(window.d3);
-      });
-    }
-    // Create a script tag with d3 as the source and call onScriptLoad callback when it has been loaded
-    var scriptTag = $document[0].createElement('script');
-    scriptTag.type = 'text/javascript';
-    scriptTag.async = true;
-    scriptTag.src = '//cdnjs.cloudflare.com/ajax/libs/d3/3.5.10/d3.min.js';
-    scriptTag.onreadystatechange = function () {
-      if (this.readyState === 'complete') {
-        onScriptLoad();
-      }
-    };
-    scriptTag.onload = onScriptLoad;
-
-    var s = $document[0].getElementsByTagName('body')[0];
-    s.appendChild(scriptTag);
-
-    //global toggle of tree
-
-    // function ToggleTree() {
-    //   console.log('toggle')
-    //   this.expand = null;
-    //   this.collapse = null;
-    //   return { expand: this.expand,
-    //            collapse: this.collapse
-    //          };
-    // }
-
     // *** creates tree *** //
     function drawTree(data){
-      console.log('in draw tree, root not available')
-      d3().then(function(d3) {
-        console.log('in then, root undefined because not defined yet')
 
         var margin = {top: 0, right: 120, bottom: 20, left: 58},
             width = 1200 - margin.right - margin.left,
@@ -74,15 +36,12 @@ function d3Service($document, $q, $rootScope) {
           .append("g")
           .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-          // console.log('d3factory data: '+data)
           root = JSON.parse(data);
-          // root = test;
 
           root.x0 = height / 2;
           root.y0 = 0;
 
           function collapse(d) {
-            console.log(d)
             if (d.children) {
               d._children = d.children;
               // console.log('d._children: '+JSON.stringify(d._children))
@@ -140,12 +99,6 @@ function d3Service($document, $q, $rootScope) {
 
           nodeEnter.append("circle")
               .attr("r", 1e-6)
-              // .on("mouseover", function (d) {
-              //     node_onMouseOver(d);
-              // })
-              // .on("mouseout", function (d) {
-              // //   node_onMouseOut(d);
-              // })
               .style("fill", function(d) {
                 circles[d._children] = this;
                 return d.source ? d.source.linkColor : d.linkColor;
@@ -170,12 +123,6 @@ function d3Service($document, $q, $rootScope) {
 
           nodeUpdate.select("circle")
               .attr("r", 7)
-              //new to set radius
-              // .attr("r", function (d) {
-              //   return isNaN(nodeRadius(d[spendField])) ? 2: nodeRadius(d[spendField]);
-              // })
-              //old
-              // .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
               .style("fill", function (d) { return d.source ? d.source.linkColor : d.linkColor })
               .style("fill-opacity", function (d) { return ((d.depth + 1) / 5);});
 
@@ -217,28 +164,11 @@ function d3Service($document, $q, $rootScope) {
                       return (d.source) ? d.source.linkColor : d.linkColor;
                   }
               });
-              // .style("stroke-width", function (d, i) {
-              //   return isNaN(nodeRadius(d.target[spendField])) ? 4: nodeRadius(d.target[spendField])*2;
-              // })
-              // .style("stroke-opacity", function (d) {
-              //   return d.target[spendField] <= 0 ? .1 : ((d.source.depth + 1) / 4.5);
-              // })
-              // .style("stroke-linecap", "round")
-              // .on("mouseover", function (d) {node_onMouseOver(d.source);})
-              // .on("mouseout", function (d) { node_onMouseOut(d.source)});
 
           // Transition links to their new position.
           link.transition()
               .duration(duration)
               .attr("d", diagonal)
-              // .style("stroke-width", function (d, i) {
-              //   return isNaN(nodeRadius(d.target[spendField])) ? 4: nodeRadius(d.target[spendField])*2;
-              // })
-              // .style("stroke-opacity", function (d) {
-              //     var ret = ((d.source.depth + 1) / 4.5);
-              //     if (d.target[spendField] <= 0) ret = 0.1;
-              //     return ret;
-              // });
 
           // Transition exiting nodes to the parent's new position.
           link.exit().transition()
@@ -255,38 +185,6 @@ function d3Service($document, $q, $rootScope) {
             d.y0 = d.y;
           });
         }//end update function
-
-        // function node_onMouseOver(d) {
-
-        //   if (typeof d.target != "undefined") {
-        //       d = d.target;
-        //   }
-        //   d3.select(circles[d._children]).transition().style("fill-opacity",0.6);
-        //   highlightPath(d);
-
-        //   function highlightPath(d) {
-        //     if (d) {
-        //         d3.select(paths[d._children]).style("stroke-opacity",function (d) {
-        //           return d.target[spendField] <= 0 ? .1 + .3 : ((d.source.depth + 1) / 4.5) + .3;
-        //         });
-        //         highlightPath(d.parent);
-        //     }
-        //   }
-        // }
-
-        // function node_onMouseOut(d) {
-        //   d3.select(circles[d._children]).transition().style("fill-opacity",0.3);
-        //   noHighlightPath(d);
-
-        //   function noHighlightPath(d) {
-        //     if (d) {
-        //         d3.select(paths[d._children]).style("stroke-opacity",function (d) {
-        //           return d.target[spendField] <= 0 ? .1 : ((d.source.depth + 1) / 4.5);
-        //         });
-        //         noHighlightPath(d.parent);
-        //     }
-        //   }
-        // }
 
         // Toggle children on click.
         function click(d) {
@@ -310,24 +208,12 @@ function d3Service($document, $q, $rootScope) {
             children.forEach(expand);
         }
 
-        // ToggleTree.prototype.expandAll = function() {
-        //   console.log('expand')
-        //   expand(root);
-        //   this.expand = update(root);
-
-        // };
         function expandAll(){
           console.log('expandAll from d3 factory')
           expand(root);
           update(root);
         }
 
-        // ToggleTree.prototype.collapseAll = function() {
-        //   console.log('collapse')
-        //   root.children.forEach(collapse);
-        //   collapse(root);
-        //   this.collapse = update(root);
-        // };
         function collapseAll(){
             console.log('collapseAll from d3 factory')
             root.children.forEach(collapse);
@@ -335,21 +221,10 @@ function d3Service($document, $q, $rootScope) {
             update(root);
         }
 
-
         // Add the clipping path
         svg.append("svg:clipPath").attr("id", "clipper")
             .append("svg:rect")
             .attr('id', 'clip-rect');
-
-        //lucy note - what is this?
-        // var layoutRoot = svg
-        //     .append("svg:g")
-        //     .attr("class", "container")
-        //     .attr("transform", "translate(" + maxLabelLength + ",0)");
-
-        // // set the clipping path
-        // var animGroup = layoutRoot.append("svg:g")
-        //     .attr("clip-path", "url(#clipper)");
 
         function setupMouseEvents(){
           ui.nodeGroup.on('mouseover', function(d, i){
@@ -417,48 +292,10 @@ function d3Service($document, $q, $rootScope) {
                 .attr("x", overlayBox.x)
                 .attr("width", overlayBox.width);
         }
-        //get root expand update collapse
-        // return {
-        //   root: root,
-        //   expand: expand
-        // };
-
-        console.log('still in draw tree: '+root)
-      });//end then
-
-      // return  {
-      //   expandAll: function(){
-
-      //             console.log('expand')
-      //             // console.log(root)
-      //             expand(root);
-      //             update(root);
-      //   },
-      //   collapseAll: function(){
-      //     console.log('collapse')
-      //     root.children.forEach(collapse);
-      //     collapse(root);
-      //     update(root);
-      //   }
-      // };
-      // console.log(expandAll)
-      console.log('before return, red error root is not defined')
-      // return {
-      //   expand: expandAll,
-      //   collapse: collapseAll
-      // };
-      console.log('below return, red error root is not defined')
     }//end draw tree function
-      console.log('outside draw tree, root not available')
-
-    // console.log(drawTree())
-    function d3(){
-      return d.promise;
-    }
 
     var service = {
-      drawTree: drawTree,
-      d3: d3
+      drawTree: drawTree
     };
 
     return service;

@@ -4,26 +4,25 @@ angular.module('directives').directive('treeTemplate', ['repoFactory', 'alertFac
         restrict: 'E',
         scope: {
           repo: '='
-          // callback: drawTree()
         },
-        // transclude: true,
-        // require: "^tree",
         templateUrl: 'tree/tree.html',
         controller: function($rootScope, $scope){
+
           $scope.getRepo = function(){
             repoFactory.getRepo($scope.repo.owner, $scope.repo.name)
               .success(function(data){
 
                 $rootScope.repoObj = JSON.stringify(data);
 
-                var toggle = d3Factory.drawTree($rootScope.repoObj);
-                console.log('toggle: '+toggle)
+                $scope.expandAll = function(){
+                  d3Factory.expandAll($rootScope.repoObj);
+                };
 
-                console.log(toggle.collapse)
-                // $scope.expandAll = toggle.expandAll;
-                // $scope.collapseAll = toggle.collapseAll;
+                $scope.collapseAll = function(){
+                  d3Factory.collapseAll($rootScope.repoObj);
+                };
 
-                // $scope.callback();
+                d3Factory.drawTree($rootScope.repoObj);
 
                 // console.log('Repo "'+$scope.repo.name+'": ', data);
                 // console.log('Repo.children "'+$scope.repo.name+'": ', data.children);
@@ -40,6 +39,7 @@ angular.module('directives').directive('treeTemplate', ['repoFactory', 'alertFac
 
                     // console.log('Repo details"'+$scope.repo.name+'": ', data);
                   });
+                  $rootScope.repoObj = JSON.stringify(data);
                 // make data appear on the screen
                 // make success message appear on the screen
               });
