@@ -29,7 +29,6 @@ function d3Service($document, $q, $rootScope) {
     var s = $document[0].getElementsByTagName('body')[0];
     s.appendChild(scriptTag);
 
-
     //global toggle of tree
 
     // function ToggleTree() {
@@ -43,7 +42,9 @@ function d3Service($document, $q, $rootScope) {
 
     // *** creates tree *** //
     function drawTree(data){
+      console.log('in draw tree, root not available')
       d3().then(function(d3) {
+        console.log('in then, root undefined because not defined yet')
 
         var margin = {top: 0, right: 120, bottom: 20, left: 58},
             width = 1200 - margin.right - margin.left,
@@ -81,6 +82,7 @@ function d3Service($document, $q, $rootScope) {
           root.y0 = 0;
 
           function collapse(d) {
+            console.log(d)
             if (d.children) {
               d._children = d.children;
               // console.log('d._children: '+JSON.stringify(d._children))
@@ -420,7 +422,10 @@ function d3Service($document, $q, $rootScope) {
         //   root: root,
         //   expand: expand
         // };
-      });
+
+        console.log('still in draw tree: '+root)
+      });//end then
+
       // return  {
       //   expandAll: function(){
 
@@ -437,11 +442,14 @@ function d3Service($document, $q, $rootScope) {
       //   }
       // };
       // console.log(expandAll)
-      return {
-        expand: expandAll,
-        collapse: collapseAll
-      };
+      console.log('before return, red error root is not defined')
+      // return {
+      //   expand: expandAll,
+      //   collapse: collapseAll
+      // };
+      console.log('below return, red error root is not defined')
     }//end draw tree function
+      console.log('outside draw tree, root not available')
 
     // console.log(drawTree())
     function d3(){

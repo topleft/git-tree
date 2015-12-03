@@ -19,9 +19,9 @@ angular.module('directives').directive('treeTemplate', ['repoFactory', 'alertFac
                 var toggle = d3Factory.drawTree($rootScope.repoObj);
                 console.log('toggle: '+toggle)
 
-                // console.log(toggle.collapse)
-                $scope.expandAll = toggle.expandAll;
-                $scope.collapseAll = toggle.collapseAll;
+                console.log(toggle.collapse)
+                // $scope.expandAll = toggle.expandAll;
+                // $scope.collapseAll = toggle.collapseAll;
 
                 // $scope.callback();
 
