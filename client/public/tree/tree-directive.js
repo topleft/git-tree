@@ -15,7 +15,7 @@ angular.module('directives').directive('treeTemplate', ['repoFactory', 'alertFac
             var objectToMove = array.splice(fromIndex, 1, placeholder)[0];
             array.splice(toIndex, 0, objectToMove);
             array.splice(array.indexOf(placeholder), 1);
-        }
+          }
 
           $scope.setRecent = function() {
             var newItem = {
@@ -45,6 +45,7 @@ angular.module('directives').directive('treeTemplate', ['repoFactory', 'alertFac
                 $rootScope.repoObj = JSON.stringify(data);
                 // console.log($rootScope.repoObj)
 
+                d3.select("svg").remove();
                 var repoTree = new d3Factory.DrawTree($rootScope.repoObj);
 
                 $scope.expandAll = function(){
@@ -70,10 +71,6 @@ angular.module('directives').directive('treeTemplate', ['repoFactory', 'alertFac
               });
               //error message
           };
-          // $scope.getAllRepos = function(){
-          //   repoFactory.getAllRepos()
-
-          // };
         }
       };
     }]);
