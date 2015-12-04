@@ -5,12 +5,12 @@ d3Service.$inject =  ['$document', '$q', '$rootScope'];
 
 function d3Service($document, $q, $rootScope) {
 
-    // *** creates tree *** //
-    function drawTree(data){
+    var margin = {top: 0, right: 120, bottom: 20, left: 70};
+    var width = 1200 - margin.right - margin.left;
+    var height = 800 - margin.top - margin.bottom;
 
-        var margin = {top: 0, right: 120, bottom: 20, left: 58},
-            width = 1200 - margin.right - margin.left,
-            height = 800 - margin.top - margin.bottom;
+    // *** creates tree *** //
+    function DrawTree(repo){
 
         var i = 0,
             duration = 750,
@@ -53,9 +53,8 @@ function d3Service($document, $q, $rootScope) {
 
           root.children.forEach(collapse);
           update(root);
-        // });
 
-        d3.select(self.frameElement).style("height", "500px");
+        // d3.select(self.frameElement).style("height", "500px");
 
         function update(source) {
 
@@ -295,7 +294,7 @@ function d3Service($document, $q, $rootScope) {
     }//end draw tree function
 
     var service = {
-      drawTree: drawTree
+      DrawTree: DrawTree
     };
 
     return service;
