@@ -23,7 +23,7 @@ function d3Service($document, $q, $rootScope) {
   }
 
 
-var margin = {top: 20, right: 120, bottom: 20, left: 70},
+var margin = {top: 20, right: 120, bottom: 20, left: 100},
     width = 960 - margin.right - margin.left,
     height = 800 - margin.top - margin.bottom;
 
@@ -107,7 +107,7 @@ function DrawTree(repo){
     var nodeEnter = node.enter().append("g")
         .attr("class", "node")
         .attr("transform", function(d) { return "translate(" + source.y0 + "," + source.x0 + ")"; })
-        .on("click", click);
+        .on("click", click)
         // .on("mouseover", mouseover)
         // .on("mouseout", mouseout);
 
@@ -125,7 +125,7 @@ function DrawTree(repo){
 
     nodeEnter.append("text")
       .attr("x", function(d) { return d.children || d._children ? -10 : 10; })
-      .attr("dy", "2em")
+      .attr("dy", "1em")
       .attr("text-anchor", function(d) { return d.children || d._children ? "end" : "start"; })
       .text(function(d) { return d.name; })
       .style("fill-opacity", 1e-6);
@@ -136,7 +136,7 @@ function DrawTree(repo){
         .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; });
 
     nodeUpdate.select("circle")
-      .attr("r", 8)
+      .attr("r", 7)
       .style("fill", function (d) {
         return d.source ? d.source.linkColor : d.linkColor;
       })
@@ -221,17 +221,14 @@ function DrawTree(repo){
   }
 
   // function mouseover(d) {
-  //   d3.select(this).append("text")
-  //     .attr("class", "hover")
-  //     .attr('transform', function(d){
-  //         return 'translate(5, -10)';
-  //     })
-  //     .text(d.name + ": " + d.id);
+  //   // console.log(d)
+  //   this.text(function(d) { return d.name; })
+  //     .style("fill-opacity", 1e-6);
+
   // }
 
-  // // Toggle children on click.
   // function mouseout(d) {
-  //     d3.select(this).select("text.hover").remove();
+  //   // d3.select(this).select("text.hover").remove();
   // }
 
   update(root);
