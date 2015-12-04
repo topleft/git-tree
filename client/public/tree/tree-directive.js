@@ -36,19 +36,13 @@ angular.module('directives').directive('treeTemplate', ['repoFactory', 'alertFac
 
                     // console.log('Repo details"'+$scope.repo.name+'": ', data);
                   });
-                  $rootScope.repoObj = JSON.stringify(data);
-                // make data appear on the screen
                 // make success message appear on the screen
               });
+              //error message
+          };
+          $scope.getAllRepos = function(){
+            repoFactory.getAllRepos()
 
-            // if(){
-
-            // }
-
-            // else{
-            //   $scope.collections.newItem = {};
-            //   alertFactory.add("danger", "Error! Item aready in database.");
-            // }
           };
         }
       };

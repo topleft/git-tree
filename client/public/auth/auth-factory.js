@@ -15,8 +15,15 @@ authService.$inject = ['$rootScope','$window', '$auth', '$location', '$rootScope
     function authenticateUser(provider){
       $auth.authenticate(provider)
         .then(function(response) {
+
+          getAllRepos(username).success(function(data){
+            console.log(data)
+            //location path tree?
+          })
+
           $window.localStorage.currentUser = JSON.stringify(response.data.user);
           $rootScope.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
           console.log(response);
           $location.path('/tree');
         })
