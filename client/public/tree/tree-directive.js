@@ -13,6 +13,7 @@ angular.module('directives').directive('treeTemplate', ['repoFactory', 'alertFac
               .success(function(data){
 
                 $rootScope.repoObj = JSON.stringify(data);
+                // console.log($rootScope.repoObj)
 
                 var repoTree = new d3Factory.DrawTree($rootScope.repoObj);
 
