@@ -29,13 +29,15 @@ angular.module('directives').directive('treeTemplate', ['repoFactory', 'alertFac
               $scope.recentSearches.pop();
               $scope.recentSearches.push(newItem);
 
-             console.log($scope.recentSearches)
             } else {
               $scope.recentSearches.push(newItem);
             }
             return $scope.recentSearches;
           };
 
+          $scope.getIndex = function(){
+
+          }
           $scope.getRepo = function(){
             repoFactory.getRepo($scope.repo.owner, $scope.repo.name)
               .success(function(data){

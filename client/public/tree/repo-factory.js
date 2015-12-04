@@ -40,6 +40,7 @@ repoService.$inject = ['$http', '$window'];
 
       function getAllRepos (owner) {
         var token = JSON.parse($window.localStorage.currentUser).accessToken;
+        console.log('token: '+token)
         return $http({
           method: 'POST',
           url: '/github/user/repos',
