@@ -23,7 +23,7 @@ function d3Service($document, $q, $rootScope) {
   }
 
 
-var margin = {top: 20, right: 120, bottom: 20, left: 120},
+var margin = {top: 20, right: 120, bottom: 20, left: 70},
     width = 960 - margin.right - margin.left,
     height = 800 - margin.top - margin.bottom;
 
@@ -125,7 +125,7 @@ function DrawTree(repo){
 
     nodeEnter.append("text")
       .attr("x", function(d) { return d.children || d._children ? -10 : 10; })
-      .attr("dy", ".35em")
+      .attr("dy", "2em")
       .attr("text-anchor", function(d) { return d.children || d._children ? "end" : "start"; })
       .text(function(d) { return d.name; })
       .style("fill-opacity", 1e-6);
@@ -136,12 +136,20 @@ function DrawTree(repo){
         .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; });
 
     nodeUpdate.select("circle")
-      .attr("r", 7)
+      .attr("r", 8)
       .style("fill", function (d) {
         return d.source ? d.source.linkColor : d.linkColor;
       })
       .style("fill-opacity", function (d) {
-        return ((d.depth + 1) / 5);
+        console.log(d)
+        console.log(d._children)
+        var opacity;
+        if(d._children === undefined){
+          opacity = d.depth + 1;
+        } else {
+          opacity = ((d.depth + 1) / 5);
+        }
+        return opacity;
       });
 
     nodeUpdate.select("text")
