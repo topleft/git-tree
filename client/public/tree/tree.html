@@ -29,7 +29,7 @@
         <div id="recent" class="panel-collapse collapse">
           <div class="panel-body">
             <p>Display of recent repos you have searched for:</p>
-            <p><a ng-href="" ng-click="getRepo()">{{repo.owner}} - {{repo.name}}</a></p>
+            <p><a ng-click="getRepo()" ng-repeat="recent in recentSearches track by $index">{{recent.owner}} - {{recent.repo}}</a></p>
           </div>
         </div>
         <a class="accordion-toggle" data-toggle="collapse" data-parent="accordion" target="_self" href="##search">

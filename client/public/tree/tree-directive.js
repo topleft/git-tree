@@ -8,9 +8,31 @@ angular.module('directives').directive('treeTemplate', ['repoFactory', 'alertFac
         templateUrl: 'tree/tree.html',
         controller: function($rootScope, $scope){
 
+          $scope.setRecent = function() {
+            $scope.recentSearches = [];
+            if ($scope.recentSearches.length === 3){
+              for (var i = 0; i < $scope.recentSearches.length; i++) {
+                $scope.recentSearches.pop();
+                $scope.recentSearches[i] = $scope.recentSearches[i+1];
+                $scope.recentSearches.push({
+                  owner: $scope.repo.owner,
+                  repo: $scope.repo.name
+                });
+              }
+            } else {
+                $scope.recentSearches.push({
+                  owner: $scope.repo.owner,
+                  repo: $scope.repo.name
+                });
+            }
+            return $scope.recentSearches;
+          };
+
           $scope.getRepo = function(){
             repoFactory.getRepo($scope.repo.owner, $scope.repo.name)
               .success(function(data){
+
+                $scope.setRecent();
 
                 $rootScope.repoObj = JSON.stringify(data);
                 // console.log($rootScope.repoObj)
