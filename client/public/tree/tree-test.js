@@ -141,8 +141,6 @@ function DrawTree(repo){
         return d.source ? d.source.linkColor : d.linkColor;
       })
       .style("fill-opacity", function (d) {
-        console.log(d)
-        console.log(d._children)
         var opacity;
         if(d._children === undefined){
           opacity = d.depth + 1;
