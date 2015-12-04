@@ -8,22 +8,30 @@ angular.module('directives').directive('treeTemplate', ['repoFactory', 'alertFac
         templateUrl: 'tree/tree.html',
         controller: function($rootScope, $scope){
 
+          $scope.recentSearches = [];
+
+          function moveIndex(array, fromIndex, toIndex) {
+            var placeholder = {};
+            var objectToMove = array.splice(fromIndex, 1, placeholder)[0];
+            array.splice(toIndex, 0, objectToMove);
+            array.splice(array.indexOf(placeholder), 1);
+        }
+
           $scope.setRecent = function() {
-            $scope.recentSearches = [];
+            var newItem = {
+                  owner: $scope.repo.owner,
+                  repo: $scope.repo.name
+                };
+
             if ($scope.recentSearches.length === 3){
-              for (var i = 0; i < $scope.recentSearches.length; i++) {
-                $scope.recentSearches.pop();
-                $scope.recentSearches[i] = $scope.recentSearches[i+1];
-                $scope.recentSearches.push({
-                  owner: $scope.repo.owner,
-                  repo: $scope.repo.name
-                });
-              }
+              moveIndex($scope.recentSearches, 1, 0);
+              moveIndex($scope.recentSearches, 2, 1);
+              $scope.recentSearches.pop();
+              $scope.recentSearches.push(newItem);
+
+             console.log($scope.recentSearches)
             } else {
-                $scope.recentSearches.push({
-                  owner: $scope.repo.owner,
-                  repo: $scope.repo.name
-                });
+              $scope.recentSearches.push(newItem);
             }
             return $scope.recentSearches;
           };
