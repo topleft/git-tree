@@ -5,7 +5,7 @@ d3Service.$inject =  ['$document', '$q', '$rootScope'];
 
 function d3Service($document, $q, $rootScope) {
 
-    var margin = {top: 0, right: 120, bottom: 20, left: 70};
+    var margin = {top: 0, right: 120, bottom: 20, left: 120};
     var width = 1200 - margin.right - margin.left;
     var height = 800 - margin.top - margin.bottom;
 
@@ -36,7 +36,7 @@ function d3Service($document, $q, $rootScope) {
           .append("g")
           .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-          root = JSON.parse(data);
+          root = JSON.parse(repo);
 
           root.x0 = height / 2;
           root.y0 = 0;
@@ -123,7 +123,15 @@ function d3Service($document, $q, $rootScope) {
           nodeUpdate.select("circle")
               .attr("r", 7)
               .style("fill", function (d) { return d.source ? d.source.linkColor : d.linkColor })
-              .style("fill-opacity", function (d) { return ((d.depth + 1) / 5);});
+              .style("fill-opacity", function (d) {
+                  var opacity;
+                  if(d._children === undefined){
+                    opacity = d.depth + 1;
+                  } else {
+                    opacity = ((d.depth + 1) / 5);
+                  }
+                  return opacity;
+              });
 
           nodeUpdate.select("text")
               .style("fill-opacity", 1);
