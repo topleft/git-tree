@@ -5,7 +5,7 @@ angular.module('directives')
       templateUrl: 'nav/nav.html',
       controller: function($scope, authFactory){
         $scope.authenticated = function(){
-          authFactory.isUserAuthenticated();
+          return authFactory.isUserAuthenticated();
         };
         $scope.authenticate = function(provider) {
           authFactory.authenticateUser(provider);
