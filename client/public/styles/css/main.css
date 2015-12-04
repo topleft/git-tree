@@ -13,7 +13,8 @@ body {
     background-color: #f0f0f0; }
 
 a {
-  color: black; }
+  color: black;
+  cursor: pointer; }
   a:link, a:visited, a:hover {
     text-decoration: none; }
   a:visited, a:hover {

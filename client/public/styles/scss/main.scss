@@ -24,6 +24,7 @@ body {
 
 a {
   color: black;
+  cursor: pointer;
 
   &:link, &:visited, &:hover{
     text-decoration: none;
