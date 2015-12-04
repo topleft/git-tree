@@ -40,10 +40,10 @@ angular.module('directives').directive('treeTemplate', ['repoFactory', 'alertFac
               });
               //error message
           };
-          $scope.getAllRepos = function(){
-            repoFactory.getAllRepos()
+          // $scope.getAllRepos = function(){
+          //   repoFactory.getAllRepos()
 
-          };
+          // };
         }
       };
     }]);
