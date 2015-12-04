@@ -1,14 +1,24 @@
 body {
   margin-bottom: 60px; }
 
+.center {
+  text-align: center; }
+
 .panel-heading {
   font-weight: bold;
   color: black;
   background-color: #f5f5f5;
   border-color: #dddddd; }
+  .panel-heading:hover {
+    background-color: #f0f0f0; }
 
-a:hover {
-  text-decoration: none; }
+a {
+  color: black; }
+  a:link, a:visited, a:hover {
+    text-decoration: none; }
+  a:visited, a:hover {
+    color: black;
+    opacity: 0.5; }
 
 .panel-body p {
   font-style: italic; }
@@ -25,6 +35,11 @@ li {
 .stats span:nth-child(0n+2) {
   font-variant: small-caps; }
 
+.tree {
+  width: 900px;
+  height: 800px;
+  overflow: scroll; }
+
 line {
   stroke: #000;
   stroke-width: 1.5px; }
@@ -33,14 +48,13 @@ line {
   cursor: pointer; }
 
 .node circle {
-  fill: black;
+  fill: #fff;
   stroke: black;
   stroke-width: 2px; }
 
 .node text {
-  font: 12.5px;
-  font-variant: small-caps;
-}
+  font: 13.5px sans-serif;
+  font-variant: small-caps; }
 
 path.link {
   fill: none;
