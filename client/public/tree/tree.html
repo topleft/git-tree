@@ -49,6 +49,11 @@
           </div>
         </div>
       </div>
+      <div class="center">
+        <button ng-click="expandAll()" class="btn btn-default">Expand</button>
+        <button ng-click="collapseAll()"class="btn btn-default">Collapse</button>
+        <button class="btn btn-default">Layer</button>
+      </div>
     </div>
 
     <div class="col-sm-10 col-md-9">
@@ -69,9 +74,6 @@
           <span id="stars">{{stars}}</span>&nbsp;&nbsp;&nbsp;
         </div><br>
         <h2><a target="_blank" ng-href={{url}}>{{name}}</a></h2>
-        <button ng-click="expandAll()" class="btn btn-default">Expand</button>
-        <button ng-click="collapseAll()"class="btn btn-default">Collapse</button>
-        <button class="btn btn-default">Layer</button>
       </div>
       <div id="repo-tree" class="tree"></div>
     </div>
