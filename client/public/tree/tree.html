@@ -30,7 +30,7 @@
           <div class="panel-body">
             <p>Display of recent repos you have searched for:</p>
             <div ng-repeat="recent in recentSearches track by $index">
-              <a ng-click="getIndex()">{{recent.owner}} - {{recent.repo}}</a>
+              <a ng-click="getParams(this.id)" id="{{recent.owner}}_{{recent.repo}}">{{recent.owner}} - {{recent.repo}}</a>
             </div>
           </div>
         </div>

@@ -8,8 +8,15 @@ angular.module('directives').directive('treeTemplate', ['alertFactory', 'd3Facto
         templateUrl: 'tree/tree.html',
         controller: function($rootScope, $scope, $window, d3Factory, repoFactory, authFactory){
 
-          $scope.recentSearches = [];
+          // *** DROPDOWN MENU *** //
+          var username = JSON.parse($window.localStorage.currentUser).username;
 
+           repoFactory.getAllRepos(username).success(function(data){
+             $scope.allRepos = data;
+          });
+
+          // *** RECENT SERACHES *** //
+          $scope.recentSearches = [];
           function moveIndex(array, fromIndex, toIndex) {
             var placeholder = {};
             var objectToMove = array.splice(fromIndex, 1, placeholder)[0];
@@ -17,18 +24,11 @@ angular.module('directives').directive('treeTemplate', ['alertFactory', 'd3Facto
             array.splice(array.indexOf(placeholder), 1);
           }
 
-          var username = JSON.parse($window.localStorage.currentUser).username;
-
-           repoFactory.getAllRepos(username).success(function(data){
-             $scope.allRepos = data;
-          });
-
           $scope.setRecent = function() {
             var newItem = {
-                  owner: $scope.repo.owner,
-                  repo: $scope.repo.name
-                };
-
+              owner: $scope.repo.owner,
+              repo: $scope.repo.name
+            }
             if ($scope.recentSearches.length === 3){
               moveIndex($scope.recentSearches, 1, 0);
               moveIndex($scope.recentSearches, 2, 1);
@@ -41,10 +41,11 @@ angular.module('directives').directive('treeTemplate', ['alertFactory', 'd3Facto
             return $scope.recentSearches;
           };
 
-          $scope.getIndex = function(){
-
+          $scope.getParams = function(id){
+            console.log(id)
           };
 
+          // *** GET REPO and TREE *** //
           $scope.getRepo = function(){
             repoFactory.getRepo($scope.repo.owner, $scope.repo.name)
               .success(function(data){
