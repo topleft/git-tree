@@ -1,12 +1,12 @@
-angular.module('directives').directive('treeTemplate', ['repoFactory', 'alertFactory', 'd3Factory',
-    function(repoFactory, alertFactory, d3Factory){
+angular.module('directives').directive('treeTemplate', ['alertFactory', 'd3Factory', '$window', 'repoFactory', 'authFactory',
+    function(repoFactory, alertFactory, d3Factory, authFactory){
       return {
         restrict: 'E',
         scope: {
           repo: '='
         },
         templateUrl: 'tree/tree.html',
-        controller: function($rootScope, $scope){
+        controller: function($rootScope, $scope, $window, d3Factory, repoFactory, authFactory){
 
           $scope.recentSearches = [];
 
@@ -16,6 +16,13 @@ angular.module('directives').directive('treeTemplate', ['repoFactory', 'alertFac
             array.splice(toIndex, 0, objectToMove);
             array.splice(array.indexOf(placeholder), 1);
           }
+
+          var username = JSON.parse($window.localStorage.currentUser).username;
+
+           repoFactory.getAllRepos(username).success(function(data){
+             $scope.allRepos = data;
+             console.log($scope.allRepos)
+          });
 
           $scope.setRecent = function() {
             var newItem = {
@@ -37,7 +44,8 @@ angular.module('directives').directive('treeTemplate', ['repoFactory', 'alertFac
 
           $scope.getIndex = function(){
 
-          }
+          };
+
           $scope.getRepo = function(){
             repoFactory.getRepo($scope.repo.owner, $scope.repo.name)
               .success(function(data){

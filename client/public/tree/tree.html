@@ -39,8 +39,13 @@
         </a>
         <div id="search" class="panel-collapse collapse">
           <div class="panel-body">
-          <p>Select from your repos:</p>
-          <a class="dropdown-toggle" data-toggle="dropdown">All your repos<span class="caret"></span></a>
+            <p>Select from your repos:</p>
+            <div class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown">All your repos<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li ng-repeat="repo in allRepos track by $index"><a>{{repo.name}}</a></li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
