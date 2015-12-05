@@ -18,7 +18,8 @@
     "morgan": "~1.6.1",
     "querystring": "^0.2.0",
     "request": "^2.66.0",
-    "serve-favicon": "~2.3.0"
+    "serve-favicon": "~2.3.0",
+    "underscore-node": "^0.1.2"
   },
   "devDependencies": {
     "browser-sync": "^2.10.0",

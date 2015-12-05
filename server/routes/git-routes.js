@@ -31,8 +31,9 @@ router.post('/github/repo', function(req, res, next) {
         };
 
       request(options, function(error, response, body){
-        var repo = JSON.parse(body);
-        var d3Repo = parse.parse(repo);
+        var repoObj = JSON.parse(body);
+        var d3Repo = {name: repo, children: repoObj.tree}
+        parse(d3Repo.children)
         res.json(d3Repo);
       });
     } else {
