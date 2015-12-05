@@ -15,15 +15,8 @@ authService.$inject = ['$rootScope', '$auth','$location', '$window', 'repoFactor
     function authenticateUser(provider){
       $auth.authenticate(provider)
         .then(function(response) {
-
           $window.localStorage.currentUser = JSON.stringify(response.data.user);
           $rootScope.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-
-          // repoFactory.getAllRepos(response.data.user.username).success(function(data){
-          //    console.log(data);
-          // });
-
-          // console.log(response);
           $location.path('/tree');
         })
         .catch(function(response) {
@@ -32,7 +25,6 @@ authService.$inject = ['$rootScope', '$auth','$location', '$window', 'repoFactor
       }
 
     function isUserAuthenticated(){
-      // console.log($auth.isAuthenticated())
       return $auth.isAuthenticated();
     }
 

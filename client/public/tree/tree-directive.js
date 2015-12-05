@@ -21,7 +21,6 @@ angular.module('directives').directive('treeTemplate', ['alertFactory', 'd3Facto
 
            repoFactory.getAllRepos(username).success(function(data){
              $scope.allRepos = data;
-             console.log($scope.allRepos)
           });
 
           $scope.setRecent = function() {
