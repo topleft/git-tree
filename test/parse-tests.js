@@ -15,7 +15,7 @@ describe('tree parser', function () {
 
   describe('createChildren', function () {
 
-    it('should create an object with paths as keys(strings) and an array of children files (objects)', function () {
+    xit('should create an object with paths as keys(strings) and an array of children files (objects)', function () {
 
       var expected = {'js': [{ name: "main.js", url: "https://api.github.com/repos/topleft/test/git/blobs/7e5a1f91d9f8531cb94ca839898fca58302a17b4" }]};
       var result = parse.createChildren(data.directory.tree);
@@ -27,13 +27,13 @@ describe('tree parser', function () {
 
 
   
-  it('should grab repo name', function(){
+  xit('should grab repo name', function(){
     var expected = data.fileName;
     var result = parse.parse(data.file).name;
     expect(result).to.eql(expected);
   });
 
-  it('should grab repo name', function(){
+  xit('should grab repo name', function(){
     var expected = data.smallRepoName;
     var result = parse.parse(data.smallRepo).name;
     expect(result).to.eql(expected);
