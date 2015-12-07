@@ -42,7 +42,7 @@ angular.module('directives').directive('treeTemplate', ['alertFactory', 'd3Facto
           };
 
           $scope.getParams = function(id){
-            console.log(id)
+            console.log(id);
           };
 
           // *** GET REPO and TREE *** //

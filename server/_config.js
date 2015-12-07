@@ -1,8 +1,8 @@
 
 var mongoDBS = {
-	test: 'mongodb://localhost/tree-test',
-	development: 'mongodb://localhost/tree',
-	production: process.env.MONGOLAB_URI
+  test: 'mongodb://localhost/tree-test',
+  development: 'mongodb://localhost/tree',
+  production: process.env.MONGOLAB_URI
 };
 
 var config = {
