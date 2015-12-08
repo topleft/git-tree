@@ -30,7 +30,7 @@
           <div class="panel-body">
             <p>Display of recent repos you have searched for:</p>
             <div ng-repeat="recent in recentSearches track by $index">
-              <a ng-click="getParams(this.id)" id="{{recent.owner}}_{{recent.repo}}">{{recent.owner}} - {{recent.repo}}</a>
+              <a ng-click="getRecentRepo(recent.repo)">{{recent.owner}} - {{recent.repo}}</a>
             </div>
           </div>
         </div>
@@ -43,15 +43,15 @@
             <div class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown">All your repos<span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li ng-repeat="repo in allRepos track by $index"><a>{{repo.name}}</a></li>
+                <li ng-repeat="repo in allRepos track by $index"><a ng-click="">{{repo.name}}</a></li>
               </ul>
             </div>
           </div>
         </div>
       </div>
       <div class="center">
-        <button ng-click="expandAll()" class="btn btn-default">Expand</button>
-        <button ng-click="collapseAll()"class="btn btn-default">Collapse</button>
+        <button ng-click="expandAll(repoTree)" class="btn btn-default">Expand</button>
+        <button ng-click="collapseAll(repoTree)"class="btn btn-default">Collapse</button>
         <!--<button class="btn btn-default">Layer</button> -->
       </div><br>
     </div>

@@ -24,10 +24,16 @@ angular.module('directives').directive('treeTemplate', ['alertFactory', 'd3Facto
             array.splice(array.indexOf(placeholder), 1);
           }
 
-          $scope.setRecent = function() {
+          $scope.setRecent = function(tree, stars, language, size, url, name) {
             var newItem = {
               owner: $scope.repo.owner,
-              repo: $scope.repo.name
+              repo: $scope.repo.name,
+              tree: tree,
+              stars: stars,
+              language: language,
+              size: size,
+              url: url,
+              name: name
             }
             if ($scope.recentSearches.length === 3){
               moveIndex($scope.recentSearches, 1, 0);
@@ -45,26 +51,26 @@ angular.module('directives').directive('treeTemplate', ['alertFactory', 'd3Facto
             console.log(id);
           };
 
+          $scope.expandAll = function(tree){
+            tree.expandAll();
+          };
+
+          $scope.collapseAll = function(tree) {
+            tree.collapseAll();
+          };
+
           // *** GET REPO and TREE *** //
           $scope.getRepo = function(){
             repoFactory.getRepo($scope.repo.owner, $scope.repo.name)
               .success(function(data){
 
-                $scope.setRecent();
-
                 $rootScope.repoObj = JSON.stringify(data);
                 // console.log($rootScope.repoObj)
 
                 d3.select("svg").remove();
-                var repoTree = new d3Factory.DrawTree($rootScope.repoObj);
-
-                $scope.expandAll = function(){
-                  repoTree.expandAll();
-                };
-
-                $scope.collapseAll = function() {
-                  repoTree.collapseAll();
-                };
+                $scope.repoTree = new d3Factory.DrawTree($rootScope.repoObj);
+                // $scope.expandAll($scope.repoTree);
+                // $scope.collapseAll($scope.repoTree);
 
                 repoFactory.getRepoDetails($scope.repo.owner, $scope.repo.name)
                   .success(function (data) {
@@ -76,6 +82,24 @@ angular.module('directives').directive('treeTemplate', ['alertFactory', 'd3Facto
                     $scope.name = data.name;
 
                     // console.log('Repo details"'+$scope.repo.name+'": ', data);
+                  }).then(function(){
+
+                      //sets information for recent searches
+                      $scope.setRecent($rootScope.repoObj, $scope.stars, $scope.language, $scope.size, $scope.url, $scope.name);
+                      console.log($scope.recentSearches)
+                      $scope.getRecentRepo = function(repoName){
+                        for (var i = 0; i < $scope.recentSearches.length; i++) {
+                          if ($scope.recentSearches[i].repo === repoName){
+                            d3.select("svg").remove();
+                            $scope.stars = $scope.recentSearches[i].stars;
+                            $scope.language = $scope.recentSearches[i].language;
+                            $scope.size = $scope.recentSearches[i].size;
+                            $scope.url = $scope.recentSearches[i].url;
+                            $scope.name = $scope.recentSearches[i].name;
+                            $scope.repoTree = new d3Factory.DrawTree($scope.recentSearches[i].tree);
+                          }
+                        }
+                      };
                   });
                 // make success message appear on the screen
               });
