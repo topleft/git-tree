@@ -40,6 +40,7 @@ router.post('/github', function(req, res) {
             }
             user.accessToken = accessToken.access_token;
             user.email = profile.email;
+            user.username = profile.login;
             user.githubProfileID = profile.id;
             user.save(function() {
               var token = helper.createToken(user);
