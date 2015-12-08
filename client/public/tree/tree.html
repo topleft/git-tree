@@ -8,7 +8,7 @@
         <div id="repo" class="panel-collapse collapse in">
           <div class="panel-body">
             <p>Search all GitHub repos by user:</p>
-            <form ng-submit="getRepo()">
+            <form ng-submit="getRepo(repo.owner, repo.name)">
               <div class="form-group">
                 <label for="item">Repo Owner</label>
                 <input type="text" class="form-control" ng-model="repo.owner" id="username" placeholder="Enter GitHub username..."  required>
@@ -43,7 +43,7 @@
             <div class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown">All your repos<span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li ng-repeat="repo in allRepos track by $index"><a ng-click="">{{repo.name}}</a></li>
+                <li ng-repeat="oneRepo in allRepos track by $index"><a ng-click="getRepo(username, oneRepo.name)">{{oneRepo.name}}</a></li>
               </ul>
             </div>
           </div>

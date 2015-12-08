@@ -9,9 +9,9 @@ angular.module('directives').directive('treeTemplate', ['alertFactory', 'd3Facto
         controller: function($rootScope, $scope, $window, d3Factory, repoFactory, authFactory){
 
           // *** DROPDOWN MENU *** //
-          var username = JSON.parse($window.localStorage.currentUser).username;
+          $scope.username = JSON.parse($window.localStorage.currentUser).username;
 
-           repoFactory.getAllRepos(username).success(function(data){
+           repoFactory.getAllRepos($scope.username).success(function(data){
              $scope.allRepos = data;
           });
 
@@ -26,8 +26,8 @@ angular.module('directives').directive('treeTemplate', ['alertFactory', 'd3Facto
 
           $scope.setRecent = function(tree, stars, language, size, url, name) {
             var newItem = {
-              owner: $scope.repo.owner,
-              repo: $scope.repo.name,
+              owner: $scope.repo.owner || $scope.username,
+              repo: $scope.repo.name || $scope.oneRepo.name,
               tree: tree,
               stars: stars,
               language: language,
@@ -51,6 +51,7 @@ angular.module('directives').directive('treeTemplate', ['alertFactory', 'd3Facto
             console.log(id);
           };
 
+          //sets up functions for expanding and collapsing tree
           $scope.expandAll = function(tree){
             tree.expandAll();
           };
@@ -60,8 +61,8 @@ angular.module('directives').directive('treeTemplate', ['alertFactory', 'd3Facto
           };
 
           // *** GET REPO and TREE *** //
-          $scope.getRepo = function(){
-            repoFactory.getRepo($scope.repo.owner, $scope.repo.name)
+          $scope.getRepo = function(username, repoName){
+            repoFactory.getRepo(username, repoName)
               .success(function(data){
 
                 $rootScope.repoObj = JSON.stringify(data);
@@ -69,10 +70,8 @@ angular.module('directives').directive('treeTemplate', ['alertFactory', 'd3Facto
 
                 d3.select("svg").remove();
                 $scope.repoTree = new d3Factory.DrawTree($rootScope.repoObj);
-                // $scope.expandAll($scope.repoTree);
-                // $scope.collapseAll($scope.repoTree);
 
-                repoFactory.getRepoDetails($scope.repo.owner, $scope.repo.name)
+                repoFactory.getRepoDetails(username, repoName)
                   .success(function (data) {
 
                     $scope.stars = data.stars;
@@ -86,7 +85,6 @@ angular.module('directives').directive('treeTemplate', ['alertFactory', 'd3Facto
 
                       //sets information for recent searches
                       $scope.setRecent($rootScope.repoObj, $scope.stars, $scope.language, $scope.size, $scope.url, $scope.name);
-                      console.log($scope.recentSearches)
                       $scope.getRecentRepo = function(repoName){
                         for (var i = 0; i < $scope.recentSearches.length; i++) {
                           if ($scope.recentSearches[i].repo === repoName){
