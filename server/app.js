@@ -10,7 +10,6 @@ var mongoose = require('mongoose');
 var http = require("http");
 
 // *** routes *** //
-var mainRoutes = require('./routes/index');
 var authRoutes = require('./routes/auth');
 var gitRoutes = require('./routes/git-routes');
 
@@ -49,7 +48,6 @@ app.get('/', function(req, res, next) {
 });
 
 // *** main routes *** //
-app.use('/', mainRoutes);
 app.use('/auth', authRoutes);
 app.use('/', gitRoutes);
 

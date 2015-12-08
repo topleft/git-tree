@@ -24,6 +24,7 @@ body {
 
 a {
   color: black;
+  cursor: pointer;
 
   &:link, &:visited, &:hover{
     text-decoration: none;
@@ -31,6 +32,21 @@ a {
   &:visited,&:hover{
     color: black;
     opacity: 0.5;
+  }
+  // .dropdown-toggle {
+  //   color: black;
+  //   opacity: 1;
+  // }
+}
+
+.dropdown {
+  border: 1px solid black;
+  padding: 10px;
+  width: 10em;
+
+  .open {
+    background-color: #eeeeee;
+    opacity: none;
   }
 }
 

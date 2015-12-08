@@ -3,17 +3,15 @@ var Schema = mongoose.Schema;
 var bcrypt = require('bcryptjs');
 var config = require('./_config');
 
-var itemSchema = new Schema ({
-	name: String,
-	type: String,
-	owner: {type: Schema.Types.ObjectId, ref: 'users'}
-});
-
 var userSchema = new Schema({
   email: {
     type: String,
     unique: true,
     lowercase: true
+  },
+  username: {
+    type: String,
+    unique: true
   },
   password: {
     type: String,
@@ -27,11 +25,8 @@ var userSchema = new Schema({
   }
 });
 
-
-var Item = mongoose.model("items", itemSchema);
 var User = mongoose.model("users", userSchema);
 
 module.exports = {
-	Item: Item,
-	User: User
+  User: User
 };

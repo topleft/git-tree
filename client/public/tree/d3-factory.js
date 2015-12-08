@@ -24,8 +24,8 @@ function d3Service($document, $q, $rootScope) {
 
 
 var margin = {top: 20, right: 120, bottom: 20, left: 100},
-    width = 960 - margin.right - margin.left,
-    height = 800 - margin.top - margin.bottom;
+    width = 2000 - margin.right - margin.left,
+    height = 1000 - margin.top - margin.bottom;
 
 
 function DrawTree(repo){
@@ -145,7 +145,7 @@ function DrawTree(repo){
         if(d._children === undefined){
           opacity = d.depth + 1;
         } else {
-          opacity = ((d.depth + 1) / 5);
+          opacity = ((d.depth + 1) / 7);
         }
         return opacity;
       });
