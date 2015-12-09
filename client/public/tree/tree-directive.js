@@ -34,7 +34,8 @@ angular.module('directives').directive('treeTemplate', ['alertFactory', 'd3Facto
               size: size,
               url: url,
               name: name
-            }
+            };
+
             if ($scope.recentSearches.length === 3){
               moveIndex($scope.recentSearches, 1, 0);
               moveIndex($scope.recentSearches, 2, 1);
@@ -73,13 +74,11 @@ angular.module('directives').directive('treeTemplate', ['alertFactory', 'd3Facto
 
                 repoFactory.getRepoDetails(username, repoName)
                   .success(function (data) {
-
                     $scope.stars = data.stars;
                     $scope.language = data.language;
                     $scope.size = data.size;
                     $scope.url = data.url;
                     $scope.name = data.name;
-
                     // console.log('Repo details"'+$scope.repo.name+'": ', data);
                   }).then(function(){
 
@@ -98,6 +97,9 @@ angular.module('directives').directive('treeTemplate', ['alertFactory', 'd3Facto
                           }
                         }
                       };
+                  //clears input fields
+                  $scope.repo.name = "";
+                  $scope.repo.owner = "";
                   });
                 // make success message appear on the screen
               });
