@@ -27,7 +27,7 @@ angular.module('directives').directive('treeTemplate', ['alertFactory', 'd3Facto
           $scope.setRecent = function(tree, stars, language, size, url, name) {
             var newItem = {
               owner: $scope.repo.owner || $scope.username,
-              repo: $scope.repo.name || $scope.oneRepo.name,
+              repo: $scope.repo.name || $scope.oneRepo,
               tree: tree,
               stars: stars,
               language: language,
