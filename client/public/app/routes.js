@@ -4,7 +4,7 @@ app.config(['$routeProvider', function($routeProvider){
   $routeProvider
   .when('/',{
     templateUrl: '../views/visual.html',
-    access: {restricted: false}
+    access: {restricted: true}
   })
   .when('/login', {
     templateUrl: '../auth/login.html',
