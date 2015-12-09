@@ -20,7 +20,7 @@ app.config(['$authProvider', function($authProvider){
   $authProvider.github({
     url: '/auth/github',
     clientId: '264120f7c49937010354', // HEROKU
-    redirectUri: window.location.origin
+    redirectUri: 'https://git-tree.herokuapp.com/'
   });
 }]);
 
