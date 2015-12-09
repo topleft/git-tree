@@ -9,9 +9,9 @@ angular.module('directives').directive('treeTemplate', ['alertFactory', 'd3Facto
         controller: function($rootScope, $scope, $window, d3Factory, repoFactory, authFactory){
 
           // *** DROPDOWN MENU *** //
-          var username = JSON.parse($window.localStorage.currentUser).username;
+          $scope.username = JSON.parse($window.localStorage.currentUser).username;
 
-           repoFactory.getAllRepos(username).success(function(data){
+           repoFactory.getAllRepos($scope.username).success(function(data){
              $scope.allRepos = data;
           });
 
@@ -24,11 +24,18 @@ angular.module('directives').directive('treeTemplate', ['alertFactory', 'd3Facto
             array.splice(array.indexOf(placeholder), 1);
           }
 
-          $scope.setRecent = function() {
+          $scope.setRecent = function(tree, stars, language, size, url, name) {
             var newItem = {
-              owner: $scope.repo.owner,
-              repo: $scope.repo.name
-            }
+              owner: $scope.repo.owner || $scope.username,
+              repo: $scope.repo.name || $scope.oneRepo,
+              tree: tree,
+              stars: stars,
+              language: language,
+              size: size,
+              url: url,
+              name: name
+            };
+
             if ($scope.recentSearches.length === 3){
               moveIndex($scope.recentSearches, 1, 0);
               moveIndex($scope.recentSearches, 2, 1);
@@ -45,37 +52,54 @@ angular.module('directives').directive('treeTemplate', ['alertFactory', 'd3Facto
             console.log(id);
           };
 
-          // *** GET REPO and TREE *** //
-          $scope.getRepo = function(){
-            repoFactory.getRepo($scope.repo.owner, $scope.repo.name)
-              .success(function(data){
+          //sets up functions for expanding and collapsing tree
+          $scope.expandAll = function(tree){
+            tree.expandAll();
+          };
 
-                $scope.setRecent();
+          $scope.collapseAll = function(tree) {
+            tree.collapseAll();
+          };
+
+          // *** GET REPO and TREE *** //
+          $scope.getRepo = function(username, repoName){
+            repoFactory.getRepo(username, repoName)
+              .success(function(data){
 
                 $rootScope.repoObj = JSON.stringify(data);
                 // console.log($rootScope.repoObj)
 
                 d3.select("svg").remove();
-                var repoTree = new d3Factory.DrawTree($rootScope.repoObj);
+                $scope.repoTree = new d3Factory.DrawTree($rootScope.repoObj);
 
-                $scope.expandAll = function(){
-                  repoTree.expandAll();
-                };
-
-                $scope.collapseAll = function() {
-                  repoTree.collapseAll();
-                };
-
-                repoFactory.getRepoDetails($scope.repo.owner, $scope.repo.name)
+                repoFactory.getRepoDetails(username, repoName)
                   .success(function (data) {
-
                     $scope.stars = data.stars;
                     $scope.language = data.language;
                     $scope.size = data.size;
                     $scope.url = data.url;
                     $scope.name = data.name;
-
                     // console.log('Repo details"'+$scope.repo.name+'": ', data);
+                  }).then(function(){
+
+                      //sets information for recent searches
+                      $scope.setRecent($rootScope.repoObj, $scope.stars, $scope.language, $scope.size, $scope.url, $scope.name);
+                      $scope.getRecentRepo = function(repoName){
+                        for (var i = 0; i < $scope.recentSearches.length; i++) {
+                          if ($scope.recentSearches[i].repo === repoName){
+                            d3.select("svg").remove();
+                            $scope.stars = $scope.recentSearches[i].stars;
+                            $scope.language = $scope.recentSearches[i].language;
+                            $scope.size = $scope.recentSearches[i].size;
+                            $scope.url = $scope.recentSearches[i].url;
+                            $scope.name = $scope.recentSearches[i].name;
+                            $scope.repoTree = new d3Factory.DrawTree($scope.recentSearches[i].tree);
+                          }
+                        }
+                      };
+                  //clears input fields
+                  $scope.repo.name = "";
+                  $scope.repo.owner = "";
                   });
                 // make success message appear on the screen
               });

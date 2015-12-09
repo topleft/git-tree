@@ -23,7 +23,7 @@ function d3Service($document, $q, $rootScope) {
   }
 
 
-var margin = {top: 20, right: 120, bottom: 20, left: 100},
+var margin = {top: 20, right: 120, bottom: 20, left: 120},
     width = 2000 - margin.right - margin.left,
     height = 1000 - margin.top - margin.bottom;
 
