@@ -4,11 +4,14 @@ body {
 .center {
   text-align: center; }
 
-p {
+p, a {
   font-size: 1.15em; }
 
 span {
-  font-size: 1.4em; }
+  font-size: 1.3em; }
+
+h2 a {
+  font-size: 1.75em; }
 
 .panel-heading {
   font-weight: bold;
@@ -68,7 +71,7 @@ line {
   stroke-width: 2px; }
 
 .node text {
-  font: 13.5px sans-serif;
+  font: 13.75px sans-serif;
   font-variant: small-caps; }
 
 path.link {
