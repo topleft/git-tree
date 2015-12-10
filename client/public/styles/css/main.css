@@ -4,6 +4,12 @@ body {
 .center {
   text-align: center; }
 
+p {
+  font-size: 1.15em; }
+
+span {
+  font-size: 1.4em; }
+
 .panel-heading {
   font-weight: bold;
   color: black;
