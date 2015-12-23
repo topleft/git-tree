@@ -1,29 +1,8 @@
-### Set up the app locally
+## Git Tree
 
-In the root folder create a new file `_env.sh` and add:
+This app is a learning and collaboration tool that visualizes GitHub repository folder structures. Understanding a project's structure is paramount to efficient on-boarding, fluid collaboration and deep learning. Git Tree seeks to optimize and streamline this process. Future goals of this project include a service to facilitate contributing to open source projects.
 
-```sh
-export githubClientSecret=YOUR_CLIENT_SECRET
-```
+[View Live](https://git-tree.herokuapp.com)
 
-In client/public/app/routes.js:
+![Tree Example](https://s3.amazonaws.com/lucyportfolio/projects/git-tree/tree.png)
 
-```javascript
-app.config(['$authProvider', function($authProvider){
-  $authProvider.github({
-    url: '/auth/github',
-    clientId: UPDATE_CLIENT_ID
-    redirectUri: window.location.origin
-  });
-  console.log(window.location.origin);
-}]);
-```
-
-In the command line run: 
-
-```sh
-source _env.sh
-gulp
-```
-
-#### all set!
